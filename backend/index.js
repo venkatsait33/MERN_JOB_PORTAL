@@ -26,7 +26,7 @@ app.use(cookieParser());
 
 //✅ CORS Configuration (fixed)
 const corsOptions = {
-    origin: "*" || 'http://localhost:5173' || "https://job-portal-mern-frontend-zeta.vercel.app",
+    origin: "https://mern-job-portal-k814.onrender.com/" || "*",
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization", "Origin", "Accept"],
