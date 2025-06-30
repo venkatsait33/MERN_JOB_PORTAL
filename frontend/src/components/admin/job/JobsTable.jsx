@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { FaUserCircle } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
-import { FaPencil } from 'react-icons/fa6'; 
+import { FaPencil } from 'react-icons/fa6';
 
 const JobsTable = () => {
     const { allRecruiterJobs, searchJobByText } = useSelector(store => store.job);
@@ -38,9 +38,9 @@ const JobsTable = () => {
     }, [allRecruiterJobs, searchJobByText])
     return (
         <div>
-            <div className='overflow-y-scroll md:h-[46vh] max-w-screen'>
+            <h1 className='mt-2 mb-2 font-semibold text-center '>Jobs Available</h1>
+            <div className='overflow-y-scroll max-w-screen'>
                 <div className="overflow-x-auto border rounded-box border-base-content/5 bg-base-100">
-                    <h1 className='mt-2 text-center '>''</h1>
 
                     <table className="table">
 
@@ -64,7 +64,7 @@ const JobsTable = () => {
 
                                     <th>{index + 1}</th>
                                     <td>
-                                        <div className='flex items-center gap-2'>
+                                        <div className='flex items-center gap-4'>
                                             <figure>
                                                 <img src={item?.company?.logo || "https://via.placeholder.com/150"} alt="logo" className='w-12 h-12 rounded-full' />
                                             </figure>
@@ -109,12 +109,12 @@ const JobsTable = () => {
                                             {openMenuIndex === index && (
                                                 <div className="absolute right-0 z-10 w-32 mt-2 origin-top-right bg-white border border-gray-200 rounded-md shadow-lg">
                                                     <div className="py-1 text-sm text-gray-700">
-                                                        <Link className="flex items-center w-full gap-2 px-4 py-2 text-left cursor-pointer hover:bg-gray-100" to={`/admin/jobs/${item._id}/update`}>
+                                                        <Link className="flex items-center w-full gap-2 px-4 py-2 text-left cursor-pointer hover:bg-gray-100" to={`/recruiter/jobs/${item._id}/update`}>
                                                             <span><FaPencil /></span>
                                                             Edit
                                                         </Link>
 
-                                                        <div className="flex items-center w-full gap-2 px-4 py-2 text-left cursor-pointer hover:bg-gray-100" onClick={() => navigate(`/admin/jobs/${item._id}/applicants/`)} >
+                                                        <div className="flex items-center w-full gap-2 px-4 py-2 text-left cursor-pointer hover:bg-gray-100" onClick={() => navigate(`/recruiter/jobs/${item._id}/applicants/`)} >
                                                             <FaUserCircle className='text-xl' />
                                                             <p>Applicants</p>
                                                         </div>

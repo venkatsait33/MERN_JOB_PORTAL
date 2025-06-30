@@ -61,8 +61,8 @@ const NavBar = () => {
                         {
                             user && user.role === 'recruiter' ? (
                                 <>
-                                    <li><Link to='/admin/companies' className='text-lg font-semibold'>companies</Link></li>
-                                    <li><Link to='/admin/jobs' className='text-lg font-semibold'>Jobs</Link></li>
+                                    <li><Link to='/recruiter/companies' className='text-lg font-semibold'>companies</Link></li>
+                                    <li><Link to='/recruiter/jobs' className='text-lg font-semibold'>Jobs</Link></li>
                                 </>
                             ) : (<>
                                 <li className=''>
@@ -86,8 +86,8 @@ const NavBar = () => {
                     {
                         user && user.role === 'recruiter' ? (
                             <>
-                                <li><Link to='/admin/companies' className='text-lg font-semibold '>Companies</Link></li>
-                                <li><Link to='/admin/jobs' className='text-lg font-semibold'>Jobs</Link></li>
+                                <li><Link to='/recruiter/companies' className='text-lg font-semibold '>Companies</Link></li>
+                                <li><Link to='/recruiter/jobs' className='text-lg font-semibold'>Jobs</Link></li>
                             </>
                         ) : (<>
                             <li className=''>

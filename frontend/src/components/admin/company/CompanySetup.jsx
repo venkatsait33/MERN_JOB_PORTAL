@@ -55,7 +55,7 @@ const CompanySetup = () => {
             })
             if (res.data.success) {
                 toast.success(res.data.message);
-                navigate('/admin/companies')
+                navigate('/recruiter/companies')
             }
         } catch (error) {
             console.log(error);
@@ -84,7 +84,7 @@ const CompanySetup = () => {
             <div className='max-w-4xl mx-auto my-10'>
                 <form onSubmit={handleSubmit} className='flex flex-col gap-6 w-[80%] p-8 mx-auto border border-gray-300 rounded-lg'>
                     <div className='' >
-                        <button onClick={() => navigate('/admin/companies')} className='flex items-center gap-3 font-semibold btn sm:btn-sm btn-outline'>
+                        <button onClick={() => navigate('/recruiter/companies')} className='flex items-center gap-3 font-semibold btn sm:btn-sm btn-outline'>
                             <IoArrowBack /> <span>Back</span>
                         </button>
                         <h1 className='font-bold text-center max-sm:mt-6 max-sm:text-lg md:text-xl'>Company Details</h1>

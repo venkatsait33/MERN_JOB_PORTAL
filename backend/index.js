@@ -26,7 +26,7 @@ app.use(cookieParser());
 
 //✅ CORS Configuration (fixed)
 const corsOptions = {
-    origin: "https://mern-job-portal-k814.onrender.com/" || "*",
+    origin: "http://localhost:8000" || "https://mern-job-portal-k814.onrender.com",
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization", "Origin", "Accept"],
@@ -46,8 +46,8 @@ app.use(express.static(path.join(_dirname, "/frontend/dist")));
 app.use((req, res) => {
     res.sendFile(path.join(_dirname, 'frontend', 'dist', 'index.html'));
 });
-  
-  
+
+
 
 // Test routes
 app.get("/", (req, res) => {

@@ -23,22 +23,22 @@ const CreateCompany = () => {
                 toast.success(res.data.message);
                 dispatch(setSingleCompany(res.data.company))
                 const companyId = res?.data?.company?._id
-                navigate(`/admin/companies/${companyId}`);
+                navigate(`/recruiter/companies/${companyId}`);
             }
         } catch (error) {
             console.log(error);
         }
     }
     return (
-        <div className='flex flex-col max-w-4xl gap-2 mx-auto'><div>
+        <div className='container flex flex-col items-center justify-center h-screen max-w-4xl gap-2 mx-auto max-sm:p-4'><div>
             <h1 className='text-2xl font-bold'>Company Name</h1>
             <p>What would you like to give your company name? you can change this later.</p>
-            <div>
+            <div className='mt-4'>
 
-                <h1 className='label'> Company Name</h1>
+                <h1 className='mb-2 label'> Company Name</h1>
                 <input type="text" onChange={(e) => setCompanyName(e.target.value)} className='w-full input input-bordered input-primary' placeholder='MicroSoft, Google, Amazon' />
-                <div className='flex items-center gap-2 my-10'>
-                    <button onClick={() => navigate('/admin/companies')} className=' btn btn-outline'>Cancel</button>
+                <div className='flex items-center gap-10 my-10'>
+                    <button onClick={() => navigate('/recruiter/companies')} className=' btn btn-outline'>Cancel</button>
                     <button onClick={registerNewCompany} className=' btn btn-primary'>Continue</button>
                 </div>
             </div>

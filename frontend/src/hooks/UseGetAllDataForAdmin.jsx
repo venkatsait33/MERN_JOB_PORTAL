@@ -17,8 +17,8 @@ const UseGetAllDataForAdmin = () => {
                 })
 
                 if (res.data.success) {
-                    dispatch(setData(res.data.jobs))
-                   
+                    //dispatch(setData(res.data))
+
                 }
             } catch (error) {
                 console.log(error);

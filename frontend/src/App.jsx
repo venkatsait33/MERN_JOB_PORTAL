@@ -27,6 +27,7 @@ import RestPassword from './components/RestPassword'
 import EmailVerification from './components/EmailVerification'
 import JobHistory from './components/user_profile/JobHistory'
 import ScrollToTop from './components/ScroolToTop'
+import AdminDashBoardLayout from './components/admin_dashboard/AdminDashBoardLayout'
 
 function App() {
 
@@ -52,32 +53,33 @@ function App() {
           {/* ------ Main Admin ----------- */}
           <Route path='/admin/signup' element={<AdminRegister />} />
           <Route path='/admin/login' element={<AdminLogin />} />
-          <Route path='/dashboard' element={<AdminDashboard />} />
+          <Route path='/dashboard' element={
+            <AdminDashBoardLayout />} />
           <Route path="/admin/dashboard/company/:id" element={<CompanyJobs />} />
           <Route path="/admin/dashboard/job/:id" element={<JobApplicants />} />
-
+          {/* recruiter */}
           {/* Recruiter */}
-          <Route path='/admin/companies' element={
+          <Route path='/recruiter/companies' element={
             <ProtectedRoute>
               <Companies />
             </ProtectedRoute>} />
-          <Route path='/admin/companies/create' element={
+          <Route path='/recruiter/companies/create' element={
             <ProtectedRoute>
               <CreateCompany />
             </ProtectedRoute>} />
-          <Route path='/admin/companies/:id' element={<ProtectedRoute><CompanySetup /></ProtectedRoute>} />
-          <Route path='/admin/jobs' element={<ProtectedRoute>
+          <Route path='/recruiter/companies/:id' element={<ProtectedRoute><CompanySetup /></ProtectedRoute>} />
+          <Route path='/recruiter/jobs' element={<ProtectedRoute>
             <AdminJobPosts />
           </ProtectedRoute>} />
-          <Route path='/admin/jobs/postjob' element={<ProtectedRoute>
+          <Route path='/recruiter/jobs/postjob' element={<ProtectedRoute>
             <JobPost />
           </ProtectedRoute>} />
-          <Route path='/admin/jobs/:id/update' element={
+          <Route path='/recruiter/jobs/:id/update' element={
             <ProtectedRoute>
               <UpdateJobPost />
             </ProtectedRoute>
           } />
-          <Route path='/admin/jobs/:id/applicants' element={<ProtectedRoute><Applicants /></ProtectedRoute>} />
+          <Route path='/recruiter/jobs/:id/applicants' element={<ProtectedRoute><Applicants /></ProtectedRoute>} />
         </Routes>
         <Footer />
       </div>

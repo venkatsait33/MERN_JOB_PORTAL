@@ -14,10 +14,11 @@ const SavedJobs = () => {
                     withCredentials: true
                 });
                 if (res.data.success) {
+
                     setSavedJobs(res.data.savedJobs);
                 }
             } catch (error) {
-                console.log(error);
+                console.error(error);
             }
         };
 
@@ -28,7 +29,7 @@ const SavedJobs = () => {
         <div className="p-3 ">
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2">
                 {savedJobs.length === 0 ? (
-                    <p className="text-xl">No saved jobs found.</p>
+                    <div className="md:h-[40vh]"><p className="text-xl">No saved jobs found.</p></div>
                 ) : (
                     savedJobs.map((job, index) => (
                         <div className="" key={index}>

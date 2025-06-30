@@ -5,6 +5,8 @@ import { USER_API_END_POINT } from '../utils/axiosApiConstants';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoading, setUser } from '../redux/authSlice';
+import { validateEmail } from '../utils/helper';
+import Input from '../components/Input';
 
 const Login = () => {
     const [input, setInput] = useState({
@@ -21,6 +23,18 @@ const Login = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        if (!validateEmail(input.email)) {
+            toast.error('Please enter valid email');
+            return;
+        }
+        // if (input.password.length < 6) {
+        //     toast.error('Password must be at least 6 characters');
+        //     return;
+        // }
+        if (!input.role) {
+            toast.error('Please select role');
+            return;
+        }
         try {
             dispatch(setLoading(true));
             const res = await axios.post(`${USER_API_END_POINT}/login`, input, {
@@ -56,7 +70,7 @@ const Login = () => {
 
                                 <div>
                                     <label className="label">Email</label>
-                                    <input type="email"
+                                    <Input type="email"
                                         name='email'
                                         value={input.email}
                                         onChange={changeEventHandler}
@@ -65,7 +79,7 @@ const Login = () => {
 
                                 <div>
                                     <label className="label">Password</label>
-                                    <input type="password"
+                                    <Input type="password"
                                         value={input.password}
                                         onChange={changeEventHandler}
                                         name='password' className="input" placeholder="Password" />
@@ -99,7 +113,7 @@ const Login = () => {
                             {loading ? <button className='mt-2 btn btn-neutral'><span className="loading loading-spinner loading-lg"></span></button> :
                                 <button type='submit' className="mt-2 btn btn-neutral">Login</button>
                             }
-                            <span>Create a new account? <Link to='/signup'>Sign Up</Link></span>
+                            <span>Create a new account? <Link to='/signup' className='ml-2 link link-primary'>Sign Up</Link></span>
                         </form>
                     </div>
                 </div>

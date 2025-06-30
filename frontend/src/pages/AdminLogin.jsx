@@ -47,10 +47,10 @@ const AdminLogin = () => {
         <div>
             <div className='flex items-center justify-center min-h-screen '>
 
-                <div className="w-full max-w-sm shadow-2xl card bg-base-100 shrink-0">
+                <div className="w-full max-w-sm shadow-2xl shadow-blue-200 card bg-base-100 shrink-0">
 
                     <div className="card-body">
-                        <h1>Login</h1>
+                        <h1 className='text-2xl font-bold text-center'>Login</h1>
                         <form onSubmit={submitHandler} className='flex flex-col gap-3 '>
                             <div className="fieldset">
 
@@ -72,7 +72,7 @@ const AdminLogin = () => {
                             </div>
                             {loading ? <button className='mt-4 btn btn-neutral'><span className="loading loading-spinner loading-lg"></span></button> :
                                 <button type='submit' className="mt-4 btn btn-neutral">Login</button>
-                            }s
+                            }
                         </form>
                     </div>
                 </div>

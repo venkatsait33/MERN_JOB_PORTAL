@@ -20,7 +20,7 @@ const AdminJobPosts = () => {
 
         <div className='flex items-center justify-between gap-2'>
           <input type="text" className='input btn-outline' onChange={(e) => setSearchInput(e.target.value)} placeholder='filter by name' />
-          <button className=' btn btn-primary' onClick={() => navigate('/admin/jobs/postjob')}>Post New Jobs</button>
+          <button className=' btn btn-primary' onClick={() => navigate('/recruiter/jobs/postjob')}>Post New Jobs</button>
         </div>
 
         <div className='mt-3'>

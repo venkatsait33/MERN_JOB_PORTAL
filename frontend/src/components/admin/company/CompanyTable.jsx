@@ -1,9 +1,9 @@
-import { useEffect,  useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import TableComponent from './TableComponent';
 
-const CompanyTable = () => {    
-    
+const CompanyTable = () => {
+
     const { companies, searchCompanyByText } = useSelector(store => store.company);
     const [filterCompany, setFilterCompany] = useState(companies);
 
@@ -18,17 +18,19 @@ const CompanyTable = () => {
         setFilterCompany(filteredCompany);
 
     }, [companies, searchCompanyByText])
-    
+
 
 
     return (
         <>
-            <div>
-                <TableComponent  companyData={filterCompany} title="List of Your recent registered companies" link={'/admin/companies'} />
-            </div>
-           
+            <div>{
+                companies.length === 0 ? <h1 className='text-center'>No Company Found</h1>
+                    :
+                    <TableComponent companyData={filterCompany} title="List of Your recent registered companies" link={'/recruiter/companies'} />
+            }</div>
+
         </>
-        
+
     );
 };
 

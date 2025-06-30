@@ -3,9 +3,14 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { USER_API_END_POINT } from '../utils/axiosApiConstants';
 import { toast } from 'react-toastify';
+import Input from '../components/Input';
+import ProfilePictureSelector from '../components/ProfilePictureSelector';
 
 const Signup = () => {
     const [loading, setLoading] = useState(false);
+    const [preview, setPreview] = useState(null)
+    const [image, setImage] = useState(null);
+    const [previewUrl, setPreviewUrl] = useState(null)
     const [input, setInput] = useState({
         fullname: '',
         email: '',
@@ -20,6 +25,13 @@ const Signup = () => {
     }
     const changeFileHandler = (e) => {
         setInput({ ...input, file: e.target.files[0] })
+        setImage(e.target.files[0])
+        const file = e.target.files[0]
+        const preview = URL.createObjectURL(file)
+        if (setPreview) {
+            setPreview(preview)
+        }
+        setPreviewUrl(preview)
     }
 
     const navigate = useNavigate()
@@ -47,7 +59,6 @@ const Signup = () => {
                 withCredentials: true,
             }
             );
-
             if (res.data.success) {
                 navigate('/login');
                 toast.success(res.data.message);
@@ -65,9 +76,11 @@ const Signup = () => {
             <div className="w-full max-w-sm shadow-2xl card bg-base-100 shrink-0">
 
                 <div className="card-body">
-                    <h1>Sign Up</h1>
-                    <form onSubmit={submitHandler} className='flex flex-col gap-3 '>
+                    <h1 className='text-xl font-semibold'>Sign Up</h1>
+                    <form onSubmit={submitHandler} className='flex flex-col gap-5 '>
+
                         <div className="fieldset">
+                            <ProfilePictureSelector handleImageChange={changeFileHandler} previewUrl={previewUrl} setPreviewUrl={setPreviewUrl} image={image} setImage={setImage} preview={preview} setPreview={setPreview} />
                             <div>
                                 <label className="label">User Name</label>
                                 <input type="text" name='fullname' className="input"
@@ -93,11 +106,11 @@ const Signup = () => {
                             </div>
                             <div>
                                 <label className="label">Password</label>
-                                <input type="password"
+                                <Input type="password"
                                     name='password'
                                     value={input.password}
                                     onChange={changeEventHandler}
-                                    className="input" placeholder="Password" />
+                                    placeholder="Password" />
                             </div>
                             <div className='flex items-center gap-2 mt-2'>
                                 <div className='flex items-center gap-2'>
@@ -116,18 +129,18 @@ const Signup = () => {
                                     <p>Recruiter</p>
                                 </div>
                             </div>
-                            <div>
+                            {/* <div>
                                 <label >Profile</label>
                                 <input type="file" className="file-input"
                                     onChange={changeFileHandler}
                                     accept='image/*' />
-                            </div>
+                            </div> */}
                         </div>
                         {loading ? <button className='mt-4 btn btn-neutral'><span className="loading loading-spinner loading-lg"></span></button> :
-                            <button type='submit' className="mt-4 btn btn-neutral">SignUp</button>
+                            <button type='submit' className=" btn btn-neutral">SignUp</button>
                         }
 
-                        <span>Already have an account? <Link to='/login'>Login</Link></span>
+                        <span>Already have an account? <Link to='/login' className='ml-2 link link-primary'>Login</Link></span>
                     </form>
                 </div>
             </div>

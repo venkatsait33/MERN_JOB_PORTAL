@@ -8,12 +8,10 @@ const AppliedJobTable = () => {
 
 
     return (
-        <div className='md:h-[50vh]'>
+        <div className='h-auto'>
             {
                 allAppliedJobs.length <= 0 ?
-                    <div className='mt-4'><span className='text-xl '>
-                        No active job applications
-                    </span> </div>
+                    <div className="md:h-[40vh]"><p className="text-xl">  No active job applications.</p></div>
                     :
                     <div className="mt-4 overflow-x-auto border rounded-box border-base-content/5 bg-base-100">
                         <h1 className='my-2 text-lg font-semibold text-center '>Applied Jobs</h1>

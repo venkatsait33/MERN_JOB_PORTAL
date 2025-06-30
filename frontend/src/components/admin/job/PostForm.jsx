@@ -3,9 +3,11 @@ import { jobCategory, jobType, locations } from '../../selectOptionsData'
 
 const PostForm = ({ navigate, submitHandler, input, changeEventHandler, companies, handleSelectHandler, loading, name, button }) => {
     return (
-        <div>   <form onSubmit={submitHandler} className='flex flex-col gap-6 w-[80%] p-8 mx-auto border border-gray-300 rounded-lg'>
+        <div>
+            <form onSubmit={submitHandler}
+                className='flex flex-col gap-6 w-[80%] p-8 mx-auto border border-gray-300 rounded-lg'>
             <div className='' >
-                <button onClick={() => navigate('/admin/jobs')} className='flex items-center gap-3 font-semibold btn sm:btn-sm btn-outline'>
+                    <button onClick={() => navigate('/recruiter/jobs')} className='flex items-center gap-3 font-semibold btn sm:btn-sm btn-outline'>
                     <IoArrowBack /> <span>Back</span>
                 </button>
                 <h1 className='font-bold text-center max-sm:mt-6 max-sm:text-lg md:text-xl'>{name}</h1>

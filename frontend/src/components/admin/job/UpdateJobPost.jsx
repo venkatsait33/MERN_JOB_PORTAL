@@ -88,7 +88,7 @@ const UpdateJobPost = () => {
 
             if (res.data.success) {
                 toast.success(res.data.message)
-                navigate('/admin/jobs')
+                navigate('/recruiter/jobs')
             }
         } catch (error) {
             console.log(error.response.data.message);
@@ -98,7 +98,7 @@ const UpdateJobPost = () => {
     }
     return (
         <div>
-            <div>
+            <div className='max-w-4xl mx-auto my-10'>
                 <PostForm submitHandler={submitHandler} changeEventHandler={changeEventHandler} input={input} companies={companies} loading={loading} navigate={navigate} handleSelectHandler={handleSelectHandler} name='Update Job Post' button="update" />
             </div>
         </div>
