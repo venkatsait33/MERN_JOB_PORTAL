@@ -7,7 +7,7 @@ const FilterData = ({ filterData,  selectedValue, handleClick }) => {
                 <div key={index} className="items-center gap-2 mt-2">
                     <h1 className="text-lg font-bold">{data.filterType}</h1>
 
-                    <div className='overflow-hidden overflow-y-scroll no-scrollbar h-52'>
+                    <div className='overflow-hidden overflow-y-scroll h-58 no-scrollbar'>
                         {data.array.map((item, idx) => {
                             const itemId = `id-${index}-${idx}`;
                             return (

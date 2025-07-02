@@ -21,8 +21,6 @@ const CompanySetup = () => {
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
 
-
-
     const changeHandler = (e) => {
         setInput({
             ...input,
@@ -80,14 +78,14 @@ const CompanySetup = () => {
 
 
     return (
-        <div>
-            <div className='max-w-4xl mx-auto my-10'>
-                <form onSubmit={handleSubmit} className='flex flex-col gap-6 w-[80%] p-8 mx-auto border border-gray-300 rounded-lg'>
+        <div className='max-w-5xl mx-auto my-10'>
+            <div className='p-6 mx-auto border border-gray-300 w-[80%] rounded-lg'>
+                <button onClick={() => navigate('/recruiter/companies')} className='flex items-center gap-3 font-semibold btn sm:btn-sm btn-outline'>
+                    <IoArrowBack /> <span>Back</span>
+                </button>
+                <form onSubmit={handleSubmit} className='flex flex-col gap-6 '>
                     <div className='' >
-                        <button onClick={() => navigate('/recruiter/companies')} className='flex items-center gap-3 font-semibold btn sm:btn-sm btn-outline'>
-                            <IoArrowBack /> <span>Back</span>
-                        </button>
-                        <h1 className='font-bold text-center max-sm:mt-6 max-sm:text-lg md:text-xl'>Company Details</h1>
+                        <h1 className='font-bold text-center max-sm:mt-6 max-sm:text-lg md:text-xl'>Update Company Details</h1>
                     </div>
                     <div className='flex items-center justify-between gap-4 max-sm:flex-col '>
                         <label htmlFor="" className='label'> Company Name</label>

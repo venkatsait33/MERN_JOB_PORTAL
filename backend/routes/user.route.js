@@ -9,7 +9,7 @@ router.route('/register').post(singleUpload, register);
 router.route('/admin').post(registerAdmin);
 router.route('/admin/login').post(adminLogin)
 router.route('/login').post(login);
-router.route("/logout").get(logout);
+router.route('/logout').get(logout);
 router.route('/updateProfile').post(isAuthenticated, singleUpload, updateProfile);
 
 // ---------------------------------------------------------

@@ -38,15 +38,11 @@ const RestPassword = () => {
   }
   const onSubmitOtpHandler = async (e) => {
     e.preventDefault()
-
     setLoading(true)
     const otpArray = inputRefs.current.map(input => input.value)
     setOtp(otpArray.join(''))
     setIsOtpSubmitted(true)
     setLoading(false)
-
-
-
   }
 
   const onSubmitNewPasswordHandler = async (e) => {
@@ -67,7 +63,6 @@ const RestPassword = () => {
       setLoading(false)
     }
   }
-
 
   const handlePaste = () => { }
   return (

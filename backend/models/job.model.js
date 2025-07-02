@@ -9,7 +9,20 @@ const jobSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+
     requirements: [{ type: String }],
+    department: {
+        type: String,
+        required: true
+    },
+    category: {
+        type: String,
+
+    },
+     jobType: {
+        type: String,
+        required: true
+    },
     salary: {
         type: String,
         required: true
@@ -18,21 +31,29 @@ const jobSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    category: {
-        type: String,
-
-    },
-    jobType: {
+    jobShifts: {
         type: String,
         required: true
     },
-    positions: {
-        type: Number,
-        required: true
-    },
-    experience: {
+      experience: {
         type: Number,
         required: true,
+    },   
+    education: {
+        type: String,
+        required: true
+    },
+    englishLevel: {
+        type: String,
+        required: true
+    },
+    gender: {
+        type: String,
+        required: true
+    },
+     positions: {
+        type: Number,
+        required: true
     },
     visible: {
         type: Boolean,

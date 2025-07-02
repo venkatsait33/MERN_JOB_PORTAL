@@ -34,13 +34,14 @@ function App() {
   return (
     <>
       <ScrollToTop />
-      <div className='max-h-screen mx-auto max-w-screen-2xl'>
+      <div className='max-h-screen mx-auto max-w-screen-2xl no-scrollbar'>
         <NavBar />
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/jobs' element={<Jobs />} />
           <Route path='/browse' element={<Browse />} />
           <Route path='/job/description/:id' element={<JobDescription />} />
+          <Route path='job-history' element={<JobHistory />} />
 
           {/*  */}
           <Route path='/profile' element={<Profile />} />
@@ -48,7 +49,6 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/reset-password' element={<RestPassword />} />
           <Route path='/email-verify' element={<EmailVerification />} />
-          <Route path='job-history' element={<JobHistory />} />
 
           {/* ------ Main Admin ----------- */}
           <Route path='/admin/signup' element={<AdminRegister />} />

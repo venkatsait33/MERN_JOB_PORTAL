@@ -38,9 +38,9 @@ const JobsTable = () => {
     }, [allRecruiterJobs, searchJobByText])
     return (
         <div>
-            <h1 className='mt-2 mb-2 font-semibold text-center '>Jobs Available</h1>
-            <div className='overflow-y-scroll max-w-screen'>
-                <div className="overflow-x-auto border rounded-box border-base-content/5 bg-base-100">
+            <h1 className='mt-2 mb-2 font-semibold text-center '>Jobs Post Available</h1>
+            <div className='overflow-y-scroll max-w-screen no-scrollbar '>
+                <div className="overflow-x-auto border no-scrollbar rounded-box border-base-content/5 bg-base-100">
 
                     <table className="table">
 

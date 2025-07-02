@@ -5,7 +5,6 @@ const Footer = () => {
     return (
         <>
             <div className=' md:h-[210px] max-sm:h-[270px] '>
-
                 <div className='flex flex-col mt-10 ml-10 '>
                     <div className='flex items-center sm:gap-4 md:gap-8'>
                         <div>
@@ -47,7 +46,6 @@ const Footer = () => {
                         <p>Terms & Conditions</p>
                     </div>
                 </div>
-
             </div>
             <div className='flex'>
                 <div className='w-full h-1 bg-[#2BB793]'></div>

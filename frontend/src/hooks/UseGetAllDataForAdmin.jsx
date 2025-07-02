@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { ADMIN_DETAILS } from '../utils/axiosApiConstants';
 import { useDispatch, useSelector } from 'react-redux';
-import { setData } from '../redux/adminDataSlice';
+import { setCompanyData, setJobsData } from '../redux/adminDataSlice';
 
 const UseGetAllDataForAdmin = () => {
     const { user } = useSelector(store => store.auth);
@@ -17,7 +17,9 @@ const UseGetAllDataForAdmin = () => {
                 })
 
                 if (res.data.success) {
-                    //dispatch(setData(res.data))
+                    console.log(res.data);
+                    dispatch(setCompanyData(res?.data.companies))
+                    dispatch(setJobsData(res.data.jobs))
 
                 }
             } catch (error) {

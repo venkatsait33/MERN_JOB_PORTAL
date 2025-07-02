@@ -66,7 +66,7 @@ const UpdateProfile = ({ open, setOpen }) => {
     return (
         <div className=''>
             {
-                open && <div className="fixed inset-0 mt-10 z-50 flex items-center justify-center bg-base-100 opacity-90 h-[90%] mx-auto my-10 card max-md:w-[80%] lg:w-[55%]">
+                open && <div className="fixed inset-0 my-10 z-50 flex mt-10 items-center justify-center bg-base-100 mx-auto max-md:w-[80%] lg:w-[45%] card">
                     <div className="w-full max-w-xl p-4 card-body">
                         <div className="flex items-center justify-between mb-4">
                             <h2 className="text-xl font-semibold">Edit Details</h2>
@@ -78,7 +78,7 @@ const UpdateProfile = ({ open, setOpen }) => {
                             </button>
                         </div>
 
-                        <form onSubmit={handleSubmit} className="space-y-4 overflow-y-scroll">
+                        <form onSubmit={handleSubmit} className="space-y-4 overflow-y-scroll no-scrollbar">
                             <div>
                                 <label className="">
                                     Name

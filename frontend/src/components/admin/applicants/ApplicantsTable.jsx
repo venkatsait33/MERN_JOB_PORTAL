@@ -8,8 +8,10 @@ import { setApplicants } from '../../../redux/applicationSlice';
 
 //const shortListStatus = () => ['Accepted', 'Rejected']
 
-const ApplicantsTable = () => {
+const ApplicantsTable = ({ fetchAllApplicants }) => {
     const { applicants } = useSelector(store => store.application)
+
+    console.log(applicants);
 
 
     const statusHandler = async (updatedStatus, id) => {
@@ -20,7 +22,7 @@ const ApplicantsTable = () => {
             })
             if (res.data.success) {
                 toast.success(res.data.message)
-             
+                fetchAllApplicants()
             }
         } catch (error) {
             console.log(error.response.message);
@@ -48,10 +50,9 @@ const ApplicantsTable = () => {
     };
     return (
         <div>
-            <div className='overflow-y-scroll md:h-[46vh] max-w-screen'>
-                <div className="overflow-x-auto border rounded-box border-base-content/5 bg-base-100">
-                    <h1 className='mt-2 text-center '>Candidates Applied for jobs</h1>
-
+            <div className='md:h-[60vh] overflow-y-scroll max-w-screen p-4 no-scrollbar'>
+                <h1 className='mt-2 mb-2 text-center '>Candidates Applied for {applicants?.title }</h1>
+                <div className="overflow-x-auto border no-scrollbar md:h-[50vh] rounded-box border-base-content/5 bg-base-100">
                     <table className="table">
 
                         <thead>

@@ -8,31 +8,34 @@ import { setApplicants } from '../../../redux/applicationSlice'
 
 const Applicants = () => {
   const params = useParams();
-  
+
   const dispatch = useDispatch();
   const { applicants } = useSelector(store => store.application)
-  useEffect(() => {
-    const fetchAllApplicants = async () => {
-      try {
-        const res = await axios.get(`${APPLICATION_API_END_POINT}/${params.id}/applicants`, {
-          withCredentials: true
-        })
-        if (res.data.success) {
-          dispatch(setApplicants(res.data.job))                  
-        }
-      } catch (error) {
-        console.log(error);
-      }
 
+  const fetchAllApplicants = async () => {
+    try {
+      const res = await axios.get(`${APPLICATION_API_END_POINT}/${params.id}/applicants`, {
+        withCredentials: true
+      })
+      if (res.data.success) {
+        dispatch(setApplicants(res.data.job))
+      }
+    } catch (error) {
+      console.log(error);
     }
+
+  }
+
+  useEffect(() => {
     fetchAllApplicants();
   }, [])
   return (
     <div>
-      <div className='mx-auto max-w-7xl'>
+      <div className='p-4 mx-auto max-w-7xl'>
         <h1 className='mt-4 text-xl font-bold '>Applicants: {applicants?.applications?.length}</h1>
-        <div>
-          <ApplicantsTable />
+        <div className='mt-2'>
+          {applicants?.applications?.length === 0 ? <p>No applicants found</p> : <ApplicantsTable fetchAllApplicants={fetchAllApplicants} />}
+
         </div>
       </div>
     </div>

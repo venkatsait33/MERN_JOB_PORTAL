@@ -5,6 +5,9 @@ import { DaysCountFunction } from '../../utils/DaysCountFunction';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { APPLICATION_API_END_POINT } from '../../utils/axiosApiConstants';
+import { MdOutlineHomeWork } from "react-icons/md";
+import { CiLocationOn } from "react-icons/ci";
+import { FaUserLarge, FaIndianRupeeSign } from "react-icons/fa6";
 
 const Job = ({ job }) => {
     const navigate = useNavigate();
@@ -58,28 +61,30 @@ const Job = ({ job }) => {
                 </div>
 
                 <div className='flex items-center gap-5 my-4'>
-                    <button className='w-20 h-20 bg-gray-300 rounded-full'>
-                        <img
-                            className='object-cover rounded-full'
-                            alt="Company logo"
-                            src={job?.company?.logo || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}
-                        />
+                    <button className='rounded-full '>
+                        {
+                            job?.company?.logo ? <>  <img
+                                className='object-cover w-20 h-20 rounded-full'
+                                alt="Company logo w-20 h-20"
+                                src={job?.company?.logo}
+                            /></> : <p>
+                                <MdOutlineHomeWork  className='w-16 h-16 text-black bg-gray-100 rounded-full' />
+                            </p>
+                        }
+                       
+                        
                     </button>
                     <div>
-                        <h1 className='text-xl font-semibold'>{job?.company?.name}</h1>
-                        <p className='mt-2 btn btn-outline btn-sm'>India</p>
+                        <h1 className='text-xl font-semibold'>{job?.title}</h1>
+                        <h1 className='text-lg font-bold'>{job?.company?.name}</h1>
+                        <p className='mt-2 text-md btn btn-sm'><CiLocationOn />{job?.location}</p>
                     </div>
                 </div>
 
-                <div>
-                    <h1 className='text-lg font-bold'>{job?.title}</h1>
-                    <p className='text-sm text-gray-500'>{job?.description}</p>
-                </div>
-
                 <div className='flex items-center justify-between gap-2 my-2 max-sm:grid max-sm:grid-cols-3 md:flex'>
-                    <div className="btn btn-sm btn-primary">{job?.positions} positions</div>
+                    <div className="btn btn-sm btn-primary"><FaUserLarge />{job?.positions} positions</div>
                     <div className="btn btn-sm btn-secondary">{job?.jobType}</div>
-                    <div className="btn btn-sm">{job?.salary}</div>
+                    <div className="btn btn-sm"><FaIndianRupeeSign/>{job?.salary}</div>
                 </div>
 
                 <div className='flex items-center justify-between'>

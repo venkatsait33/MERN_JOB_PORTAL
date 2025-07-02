@@ -9,14 +9,12 @@ import { setUser } from '../redux/authSlice';
 import { MdEmail } from 'react-icons/md';
 
 const NavBar = () => {
-
     const { user } = useSelector(store => store.auth);
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const handleLogout = async () => {
         try {
-
             const res = await axios.get(`${USER_API_END_POINT}/logout`, {
                 withCredentials: true
             });
@@ -36,7 +34,7 @@ const NavBar = () => {
             const res = await axios.post(`${USER_API_END_POINT}/send-verification-otp`, {}, {
                 withCredentials: true
             })
-            if (res.success) {
+            if (res.data.success) {
                 toast.success(res.message)
                 navigate('/email-verify')
             }
@@ -126,7 +124,7 @@ const NavBar = () => {
                                         className="p-2 mt-3 text-xl shadow menu sm:menu-sm dropdown-content bg-base-100 rounded-box z-1 w-52 md:w-62">
                                         <li>
                                             <p className="justify-between">
-                                                {user?.fullname}
+                                                {user?.fullname || user?.name}
                                             </p>
 
                                         </li>

@@ -24,8 +24,8 @@ const TableComponent = ({ companyData, title, link }) => {
     return (
         <div>
             <h1 className='mt-3 mb-2 font-semibold text-center '>{title}</h1>
-            <div className='overflow-y-scroll mt-4 md:h-[55vh] max-w-screen'>
-                <div className="overflow-x-auto border rounded-box border-base-content/5 bg-base-100">
+            <div className='overflow-y-scroll mt-4 md:h-[55vh] max-w-screen no-scrollbar'>
+                <div className="overflow-x-auto border no-scrollbar rounded-box border-base-content/5 bg-base-100">
 
                     <table className="table">
 

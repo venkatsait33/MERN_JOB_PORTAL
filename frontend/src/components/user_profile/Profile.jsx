@@ -6,13 +6,11 @@ import { useState } from 'react';
 import UpdateProfile from './UpdateProfile';
 import { useSelector } from 'react-redux';
 
-const isResume = true;
-
 const Profile = () => {
     const [open, setOpen] = useState(false)
     const { user } = useSelector(store => store.auth)
     return (
-        <div className='relative h-[50vh] max-md:p-4 max-sm:p-2'>
+        <div className='relative md:h-[50vh] max-md:p-4 max-sm:p-2'>
             <div className='max-w-4xl mx-auto my-4'>
                 <div className='border rounded-box border-base-content/5 card'>
                     <div className='card-body'>
@@ -47,8 +45,6 @@ const Profile = () => {
                                         <TiTick className="text-2xl font-bold text-center" />
                                     </div>}
                                 </div>
-
-
                             </div>
                             <div className='flex items-center gap-4 mt-2 md:text-lg'>
                                 <IoIosContact />
@@ -71,7 +67,9 @@ const Profile = () => {
                         <div className='grid items-center w-full max-w-sm gap-1.5'>
                             <label className='font-bold text-md' >Resume</label>
                             {
-                                isResume ? <a target='_blank' href={user?.profile?.resume} className='link ' >{user?.profile?.resumeOriginalName}</a> : <span>NA</span>
+                                user?.profile?.resume ? <div>
+                                    <a target='_blank' href={user?.profile?.resume} className='link ' >{user?.profile?.resumeOriginalName}</a>
+                                </div> : <span>N/A</span>
                             }
                         </div>
                     </div>

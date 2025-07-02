@@ -4,9 +4,9 @@ import { Job } from "../models/job.model.js";
 //recruiter post job by login
 export const postJob = async (req, res) => {
     try {
-        const { title, description, location, requirements, salary, jobType, positions, companyId, experience, category } = req.body
+        const { title, description, location, requirements, salary, englishLevel, jobType, positions, department, education, gender, jobShifts, companyId, experience, category } = req.body
         const userId = req.id;
-        if (!title || !description || !location || !requirements || !salary || !jobType || !positions || !companyId || !experience || !category) {
+        if (!title || !description || !location || !requirements || !englishLevel || !salary || !jobType || !jobShifts || !education || !positions || !companyId || !experience || !category || !gender || !jobShifts || !department) {
             return res.status(400).json({ message: "Please fill all the fields", success: false })
         }
 
@@ -14,14 +14,19 @@ export const postJob = async (req, res) => {
             title,
             description,
             requirements: requirements.split(","),
+            department,
+            category,
             location,
-            salary,
             jobType,
-            positions,
+            salary,
+            jobShifts,
             experience,
+            education,
+            englishLevel,
+            gender,
+            positions,
             company: companyId,
             created_by: userId,
-            category
         });
 
         return res.status(200).json({ message: "Job posted successfully", success: true, job })
@@ -71,8 +76,6 @@ export const updateJob = async (req, res) => {
     }
 }
 
-
-
 export const getAllJobs = async (req, res) => {
     try {
         const userId = req.id;
@@ -99,7 +102,9 @@ export const getAllJobs = async (req, res) => {
         const jobIds = jobs.map(job => job._id);
         const applications = await Application.find({
             job: { $in: jobIds },
-            applicant: userId
+            applicant: userId,
+        }).populate({
+            path: 'user'
         });
 
         // Create a map of jobId => { isSaved, isApplied }
@@ -132,19 +137,16 @@ export const getAllJobs = async (req, res) => {
     }
 };
 
-
-
-
 export const getJobById = async (req, res) => {
     try {
-
         const jobId = req.params.id;
-
         const job = await Job.findById(jobId).populate({
             path: 'applications'
         }).populate({
             path: 'company'
-        }) // we should populate the applications field to get the application details wether the user is applied or not
+        }).populate({
+            path: 'created_by'
+        })
 
         if (!job) {
             return res.status(400).json({ message: "job not found", success: false })
@@ -156,9 +158,7 @@ export const getJobById = async (req, res) => {
         console.log(error);
     }
 }
-
 //recruiter created jobs
-
 export const getRecruiterJobs = async (req, res) => {
     try {
 

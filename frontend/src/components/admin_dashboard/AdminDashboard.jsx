@@ -4,7 +4,6 @@ import axios from "axios";
 import { ADMIN_DETAILS } from "../../utils/axiosApiConstants";
 
 const AdminDashboard = () => {
-
     const [dashboardData, setDashboardData] = useState()
 
     useEffect(() => {
