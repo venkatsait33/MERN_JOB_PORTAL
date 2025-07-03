@@ -13,3 +13,5 @@ export const ADMIN_DETAILS = "https://mern-job-portal-k814.onrender.com" + `/api
 
 
 ///api/v1/company
+
+//http://localhost:8000

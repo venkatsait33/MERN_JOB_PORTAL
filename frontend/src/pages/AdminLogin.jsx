@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { USER_API_END_POINT } from '../utils/axiosApiConstants';
 import { toast } from 'react-toastify';
@@ -16,7 +16,7 @@ const AdminLogin = () => {
         setInput({ ...input, [e.target.name]: e.target.value })
     }
     const dispatch = useDispatch();
-    const { loading } = useSelector(store => store.auth);
+    const { loading, user } = useSelector(store => store.auth);
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -41,6 +41,12 @@ const AdminLogin = () => {
             dispatch(setLoading(false));
         }
     }
+
+     useEffect(() => {
+            if (user) {
+                navigate("/");
+            }
+        })
 
     return (
         <div>

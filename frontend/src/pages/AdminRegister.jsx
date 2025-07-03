@@ -30,7 +30,7 @@ const AdminRegister = () => {
             );
 
             if (res.data.success) {
-                navigate('/login');
+                navigate('/admin/login');
                 toast.success(res.data.message);
             }
         } catch (error) {

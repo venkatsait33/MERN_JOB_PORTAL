@@ -144,7 +144,7 @@ const NavBar = () => {
                                         {
                                             user && user.role === 'admin' && (
                                                 <li >
-                                                    <Link to='/dashboard' className='text-xl'>
+                                                    <Link to='/admin/dashboard' className='text-xl'>
                                                         <AiOutlineUser /> Admin Dashboard
                                                     </Link>
                                                 </li>

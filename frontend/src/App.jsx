@@ -28,6 +28,7 @@ import EmailVerification from './components/EmailVerification'
 import JobHistory from './components/user_profile/JobHistory'
 import ScrollToTop from './components/ScroolToTop'
 import AdminDashBoardLayout from './components/admin_dashboard/AdminDashBoardLayout'
+import PageNotFound from './pages/PageNotFound'
 
 function App() {
 
@@ -53,7 +54,7 @@ function App() {
           {/* ------ Main Admin ----------- */}
           <Route path='/admin/signup' element={<AdminRegister />} />
           <Route path='/admin/login' element={<AdminLogin />} />
-          <Route path='/dashboard' element={
+          <Route path='/admin/dashboard' element={
             <AdminDashBoardLayout />} />
           <Route path="/admin/dashboard/company/:id" element={<CompanyJobs />} />
           <Route path="/admin/dashboard/job/:id" element={<JobApplicants />} />
@@ -80,7 +81,9 @@ function App() {
             </ProtectedRoute>
           } />
           <Route path='/recruiter/jobs/:id/applicants' element={<ProtectedRoute><Applicants /></ProtectedRoute>} />
+          <Route path='*' element={<PageNotFound />} />
         </Routes>
+
         <Footer />
       </div>
     </>
