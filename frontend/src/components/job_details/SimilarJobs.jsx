@@ -6,8 +6,7 @@ import { PiHandbagSimpleBold } from 'react-icons/pi';
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-const SimilarJobs = ({ singleJob }) => {
-    const { allJobs } = useSelector(store => store.job);
+const SimilarJobs = ({ singleJob,allJobs }) => {    
 
     const filteredJobs = allJobs.filter(
         (job) => job.category === singleJob.category && job._id !== singleJob._id
