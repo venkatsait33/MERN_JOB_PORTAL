@@ -19,8 +19,6 @@ const AdminRegister = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        //we append all data into formdata with files
-          
         try {
             setLoading(true)
             const res = await axios.post(`${USER_API_END_POINT}/admin`, input, {
@@ -45,7 +43,6 @@ const AdminRegister = () => {
     return (
         <div> <div className='flex items-center justify-center min-h-screen '>
             <div className="w-full max-w-sm shadow-2xl card bg-base-100 shrink-0">
-
                 <div className="card-body">
                     <h1>Sign Up</h1>
                     <form onSubmit={submitHandler} className='flex flex-col gap-3 '>
@@ -80,8 +77,7 @@ const AdminRegister = () => {
                                     value={input.password}
                                     onChange={changeEventHandler}
                                     className="input" placeholder="Password" />
-                            </div>
-                           
+                            </div>                           
                         </div>
                         {loading ? <button className='mt-4 btn btn-neutral'><span className="loading loading-spinner loading-lg"></span></button> :
                             <button type='submit' className="mt-4 btn btn-neutral">Admin Signup</button>

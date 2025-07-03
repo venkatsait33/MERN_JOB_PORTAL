@@ -76,11 +76,70 @@ export const updateJob = async (req, res) => {
     }
 }
 
+// export const getAllJobs = async (req, res) => {
+//     try {
+//         const userId = req.id;
+//         const keyword = req.query.keyword || '';
+
+//         const query = {
+//             $or: [
+//                 { title: { $regex: keyword, $options: 'i' } },
+//                 { description: { $regex: keyword, $options: 'i' } },
+//                 { location: { $regex: keyword, $options: 'i' } },
+//                 { category: { $regex: keyword, $options: 'i' } },
+//             ]
+//         };
+
+//         const jobs = await Job.find(query)
+//             .populate({ path: 'company' })
+//             .sort({ createdAt: -1 });
+
+//         if (!jobs || jobs.length === 0) {
+//             return res.status(404).json({ message: "No jobs found", success: false });
+//         }
+
+//         // ✅ Fetch all application records by this user for the returned jobs
+//         const jobIds = jobs.map(job => job._id);
+//         const applications = await Application.find({
+//             job: { $in: jobIds },
+//             applicant: userId,
+//         })
+
+//         // Create a map of jobId => { isSaved, isApplied }
+//         const appMap = {};
+//         applications.forEach(app => {
+//             appMap[app.job.toString()] = {
+//                 isSaved: app.isSaved || false,
+//                 isApplied: app.isApplied || false
+//             };
+//         });
+
+//         // ✅ Add isSaved and isApplied to each job object
+//         const jobsWithFlags = jobs.map(job => {
+//             const jobObj = job.toObject();
+//             const flags = appMap[job._id.toString()] || { isSaved: false, isApplied: false };
+//             jobObj.isSaved = flags.isSaved;
+//             jobObj.isApplied = flags.isApplied;
+//             return jobObj;
+//         });
+
+//         return res.status(200).json({
+//             message: "Jobs fetched successfully",
+//             success: true,
+//             job: jobsWithFlags
+//         });
+
+//     } catch (error) {
+//         console.error(error);
+//         return res.status(500).json({ message: "Server error", success: false });
+//     }
+// };
 export const getAllJobs = async (req, res) => {
     try {
-        const userId = req.id;
+        const userId = req.id || null; // 🛡️ fallback if user is not logged in
         const keyword = req.query.keyword || '';
 
+        // Search jobs matching keyword
         const query = {
             $or: [
                 { title: { $regex: keyword, $options: 'i' } },
@@ -91,39 +150,53 @@ export const getAllJobs = async (req, res) => {
         };
 
         const jobs = await Job.find(query)
-            .populate({ path: 'company' })
-            .sort({ createdAt: -1 });
+            .populate({ path: 'company', select: '-password' }) // exclude sensitive fields
+            .sort({ createdAt: -1 })
+            .lean(); // return plain JS objects for easier modification
 
-        if (!jobs || jobs.length === 0) {
-            return res.status(404).json({ message: "No jobs found", success: false });
+        // Early return if no jobs
+        if (!jobs.length) {
+            return res.status(200).json({
+                message: "No jobs found",
+                success: true,
+                job: []
+            });
         }
 
-        // ✅ Fetch all application records by this user for the returned jobs
-        const jobIds = jobs.map(job => job._id);
-        const applications = await Application.find({
-            job: { $in: jobIds },
-            applicant: userId,
-        }).populate({
-            path: 'user'
-        });
+        let jobsWithFlags = [...jobs];
 
-        // Create a map of jobId => { isSaved, isApplied }
-        const appMap = {};
-        applications.forEach(app => {
-            appMap[app.job.toString()] = {
-                isSaved: app.isSaved || false,
-                isApplied: app.isApplied || false
-            };
-        });
+        // If user is logged in, fetch their applications
+        if (userId) {
+            const jobIds = jobs.map(job => job._id);
 
-        // ✅ Add isSaved and isApplied to each job object
-        const jobsWithFlags = jobs.map(job => {
-            const jobObj = job.toObject();
-            const flags = appMap[job._id.toString()] || { isSaved: false, isApplied: false };
-            jobObj.isSaved = flags.isSaved;
-            jobObj.isApplied = flags.isApplied;
-            return jobObj;
-        });
+            const applications = await Application.find({
+                job: { $in: jobIds },
+                applicant: userId
+            }).lean();
+
+            // Map of jobId => flags
+            const appMap = {};
+            applications.forEach(app => {
+                appMap[app.job.toString()] = {
+                    isSaved: app.isSaved || false,
+                    isApplied: app.isApplied || false
+                };
+            });
+
+            // Add flags to jobs
+            jobsWithFlags = jobs.map(job => ({
+                ...job,
+                isSaved: appMap[job._id.toString()]?.isSaved || false,
+                isApplied: appMap[job._id.toString()]?.isApplied || false
+            }));
+        } else {
+            // If no user, set all flags to false
+            jobsWithFlags = jobs.map(job => ({
+                ...job,
+                isSaved: false,
+                isApplied: false
+            }));
+        }
 
         return res.status(200).json({
             message: "Jobs fetched successfully",
@@ -132,7 +205,7 @@ export const getAllJobs = async (req, res) => {
         });
 
     } catch (error) {
-        console.error(error);
+        console.error("Error in getAllJobs:", error);
         return res.status(500).json({ message: "Server error", success: false });
     }
 };

@@ -21,7 +21,7 @@ import SimilarJobs from './SimilarJobs.jsx'
 
 const JobDescription = () => {
     const { user } = useSelector(store => store.auth)
-    const { singleJob } = useSelector(store => store.job)
+    const { singleJob, allJobs } = useSelector(store => store.job)
     const [loading, setLoading] = useState(false)
     const params = useParams()
     const navigate = useNavigate()
@@ -174,7 +174,7 @@ const JobDescription = () => {
                     </>
                 </div>
                 <div className='max-sm:hidden '>
-                    <SimilarJobs singleJob={singleJob} /></div>
+                    <SimilarJobs allJobs={allJobs} singleJob={singleJob} /></div>
             </div>
 
         </div>

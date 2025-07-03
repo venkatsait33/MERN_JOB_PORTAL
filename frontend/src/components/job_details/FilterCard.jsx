@@ -32,11 +32,20 @@ const FilterCard = () => {
         <div className="flex-col w-full gap-4 p-3 max-sm:gap-2 max-sm:flex">
             <h1 className="text-lg font-bold">Filter Jobs</h1>
             <hr className="mt-2" />
-            {
-                selectedValue && <div>
-                    <button className='mt-2 btn btn-outline' onClick={() => setSelectedValue(null)}>Clear Filters</button>
+
+            {selectedValue && (
+                <div>
+                    <button
+                        className='mt-2 btn btn-outline'
+                        onClick={() => {
+                            setSelectedValue({ location: null, category: null });
+                            dispatch(setSearchQuery(""));
+                        }}
+                    >
+                        Clear Filters
+                    </button>
                 </div>
-            }
+            )}
 
 
             <div className='flex gap-2 max-md:items-center max-md:justify-between max-sm:items-center max-sm:justify-between md:flex-col' >

@@ -16,11 +16,11 @@ const SimilarJobs = ({ singleJob, allJobs }) => {
     return (
         <div className='mt-6 w-[300px]'>
             <h2 className='mb-4 text-xl font-bold'>Similar Jobs</h2>
-            {filteredJobs.length === 0 ? (
+            {filteredJobs?.length === 0 ? (
                 <p>No similar jobs found.</p>
             ) : (
                 <div className='flex flex-col gap-3'>
-                    {filteredJobs.map((job) => (
+                    {filteredJobs?.map((job) => (
                         <div key={job._id} className='p-4 transition border rounded-lg shadow-sm border-base-200 hover:shadow-md'>
                             <div className='flex items-center justify-between'>
                                 <div className='flex gap-3'>
@@ -36,7 +36,7 @@ const SimilarJobs = ({ singleJob, allJobs }) => {
                                         }
                                     </div>
                                     <div>
-                                        <h3 className='text-lg font-semibold'>{job.title}</h3>
+                                        <h3 className='text-lg font-semibold'>{job?.title}</h3>
                                         <p className='text-sm text-gray-600'>{job?.company?.name}</p>
                                     </div>
                                 </div>
