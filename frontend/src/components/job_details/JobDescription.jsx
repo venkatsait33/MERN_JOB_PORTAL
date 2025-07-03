@@ -22,7 +22,6 @@ import SimilarJobs from './SimilarJobs.jsx'
 const JobDescription = () => {
     const { user } = useSelector(store => store.auth)
     const { singleJob } = useSelector(store => store.job)
-    const { allJobs } = useSelector(store => store.job);
     const [loading, setLoading] = useState(false)
     const params = useParams()
     const navigate = useNavigate()
@@ -135,10 +134,15 @@ const JobDescription = () => {
 
                             <p className='flex items-center gap-2 my-1 font-semibold'><FaIndianRupeeSign />Salary: <span className='pl-4 font-normal '> {singleJob?.salary || "N/A"}</span></p>
                         </div>
-
-                        <div className=" max-sm:mb-4">
-                            <MDEditor.Markdown source={singleJob?.description} style={{ whiteSpace: 'pre-wrap', backgroundColor: 'transparent', color:'gray'}} />
+                        <div tabIndex={0} className=" collapse collapse-arrow">
+                            <input type="checkbox" />
+                            <div className="font-semibold collapse-title">Job Description</div>
+                            <div className=" max-sm:mb-4 collapse-content">
+                                <MDEditor.Markdown source={singleJob?.description} style={{ whiteSpace: 'pre-wrap', backgroundColor: 'transparent', color: 'gray' }} />
+                            </div>
                         </div>
+
+
                         <div className='mt-4 max-sm:mb-4'>
                             <p className='text-xl font-semibold text-center'>Job Role</p>
                             <div className='grid grid-cols-2 gap-3 mt-2 max-sm:grid-cols-1'>
@@ -148,6 +152,7 @@ const JobDescription = () => {
                                 <p className='flex items-center gap-2 my-1 font-semibold'><CiLocationOn />Location: <span className='pl-4 font-normal ' > {singleJob?.location || "N/A"}</span></p>
                                 <p className='flex items-center gap-2 my-1 font-semibold'> <FaRegClock />Job Type: <span className='pl-4 font-normal ' >{singleJob?.jobType || "N/A"}</span></p>
                                 <p className='flex items-center gap-2 my-1 font-semibold'><CgDarkMode />Job Shift: <span className='pl-4 font-normal ' > {singleJob?.jobShifts || "N/A"}</span></p>
+
                             </div>
                         </div>
                         <div className='mt-2 max-sm:mb-4'>
@@ -169,7 +174,7 @@ const JobDescription = () => {
                     </>
                 </div>
                 <div className='max-sm:hidden '>
-                    <SimilarJobs singleJob={singleJob} allJobs={allJobs} /></div>
+                    <SimilarJobs singleJob={singleJob} /></div>
             </div>
 
         </div>

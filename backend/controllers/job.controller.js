@@ -145,7 +145,8 @@ export const getJobById = async (req, res) => {
         }).populate({
             path: 'company'
         }).populate({
-            path: 'created_by'
+            path: 'created_by',
+            select: '-password'
         })
 
         if (!job) {
