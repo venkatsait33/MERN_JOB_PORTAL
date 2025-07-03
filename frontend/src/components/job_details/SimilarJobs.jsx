@@ -3,17 +3,15 @@ import { CiLocationOn } from 'react-icons/ci';
 import { FaIndianRupeeSign } from 'react-icons/fa6';
 import { MdKeyboardArrowRight, MdOutlineHomeWork } from 'react-icons/md';
 import { PiHandbagSimpleBold } from 'react-icons/pi';
-import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-const SimilarJobs = ({ singleJob,allJobs }) => {    
+const SimilarJobs = ({ singleJob, allJobs }) => {
 
     const filteredJobs = singleJob
-        ? allJobs.filter(
-            (job) => job.category === singleJob.category && job._id !== singleJob._id
+        ? allJobs?.filter(
+            (job) => job?.category === singleJob?.category && job?._id !== singleJob?._id
         )
         : [];
-  
 
     return (
         <div className='mt-6 w-[300px]'>
@@ -51,11 +49,9 @@ const SimilarJobs = ({ singleJob,allJobs }) => {
                                     </Link>
                                 </div>
                             </div>
-                       
                             <p className='flex items-center gap-2 my-1 font-semibold'><CiLocationOn /><span className='pl-4 font-normal ' > {job?.location || "N/A"}</span></p>
                             <p className='flex items-center gap-2 my-1 font-semibold'><PiHandbagSimpleBold /><span className='pl-4 font-normal ' >{job?.experience || "N/A"} yr</span></p>
                             <p className='flex items-center gap-2 my-1 font-semibold'><FaIndianRupeeSign /><span className='pl-4 font-normal '> {job?.salary || "N/A"}LPA</span></p>
-                            
                         </div>
                     ))}
                 </div>
