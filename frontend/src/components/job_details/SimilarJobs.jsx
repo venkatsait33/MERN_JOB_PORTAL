@@ -8,9 +8,12 @@ import { Link } from 'react-router-dom'
 
 const SimilarJobs = ({ singleJob,allJobs }) => {    
 
-    const filteredJobs = allJobs.filter(
-        (job) => job.category === singleJob.category && job._id !== singleJob._id
-    );
+    const filteredJobs = singleJob
+        ? allJobs.filter(
+            (job) => job.category === singleJob.category && job._id !== singleJob._id
+        )
+        : [];
+  
 
     return (
         <div className='mt-6 w-[300px]'>

@@ -148,7 +148,6 @@ const JobDescription = () => {
                                 <p className='flex items-center gap-2 my-1 font-semibold'><CiLocationOn />Location: <span className='pl-4 font-normal ' > {singleJob?.location || "N/A"}</span></p>
                                 <p className='flex items-center gap-2 my-1 font-semibold'> <FaRegClock />Job Type: <span className='pl-4 font-normal ' >{singleJob?.jobType || "N/A"}</span></p>
                                 <p className='flex items-center gap-2 my-1 font-semibold'><CgDarkMode />Job Shift: <span className='pl-4 font-normal ' > {singleJob?.jobShifts || "N/A"}</span></p>
-
                             </div>
                         </div>
                         <div className='mt-2 max-sm:mb-4'>
