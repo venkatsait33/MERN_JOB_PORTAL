@@ -28,7 +28,6 @@ const AdminRegister = () => {
                 withCredentials: true,
             }
             );
-
             if (res.data.success) {
                 navigate('/admin/login');
                 toast.success(res.data.message);
@@ -69,7 +68,7 @@ const AdminRegister = () => {
                                     value={input.phoneNumber}
                                     onChange={changeEventHandler}
                                     className="input" placeholder="0987654321" />
-                            </div>                            
+                            </div>
                             <div>
                                 <label className="label">Password</label>
                                 <input type="password"
@@ -77,7 +76,7 @@ const AdminRegister = () => {
                                     value={input.password}
                                     onChange={changeEventHandler}
                                     className="input" placeholder="Password" />
-                            </div>                           
+                            </div>
                         </div>
                         {loading ? <button className='mt-4 btn btn-neutral'><span className="loading loading-spinner loading-lg"></span></button> :
                             <button type='submit' className="mt-4 btn btn-neutral">Admin Signup</button>

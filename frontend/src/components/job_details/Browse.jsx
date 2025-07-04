@@ -5,7 +5,7 @@ import { setSearchQuery } from '../../redux/jobSlice';
 import UseGetAllJobs from '../../hooks/UseGetAllJobs';
 
 const Browse = () => {
-    const { allJobs, searchQuery } = useSelector(store => store.job);
+    const { allJobs } = useSelector(store => store.job);
     const dispatch = useDispatch();
     UseGetAllJobs();
     useEffect(() => {

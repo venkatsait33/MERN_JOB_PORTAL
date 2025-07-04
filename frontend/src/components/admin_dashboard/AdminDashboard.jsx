@@ -1,78 +1,90 @@
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { ADMIN_DETAILS } from "../../utils/axiosApiConstants";
+import React from 'react'
 
-const AdminDashboard = () => {
-    const [dashboardData, setDashboardData] = useState()
+const AdminDashboard = ({ dashboardData }) => {
+    const { companies = [], jobs = [] } = dashboardData;
+    const applicants = dashboardData?.applicants.length
+    const companiesLength = dashboardData?.companies.length
+    const jobsLength = dashboardData?.jobs.length
 
-    useEffect(() => {
-        const fetchCompany = async () => {
-            try {
-                const res = await axios.get(`${ADMIN_DETAILS}/recruiters-jobs-candidates`, {
-                    withCredentials: true
-                })
+    // Helper function to get latest 5
+    const getLatestItems = (items) => {
+        return items
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            .slice(0, 5);
+    };
 
-                if (res.data.success) {
-                    setDashboardData(res.data)
-                    // console.log(res.data);
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        fetchCompany();
-    }, [])
-
-    // const uniqueCompanies = data.reduce((acc, item) => {
-    //     // if (item?.company && !acc[item?.company._id]) {
-    //     //     acc[item?.company._id] = item?.company;
-    //     // }
-    //     console.log(item.company?.name);
-    //     return acc;
-    // }, {});
-
+    const latestCompanies = getLatestItems(companies);
+    const latestJobs = getLatestItems(jobs);
     return (
-        <>
-            <div className="h-auto max-w-5xl p-4 mx-auto">
-                <p className="mb-4 text-xl font-bold "> Dashboard </p>
-                <p className="m-2 text-lg font-bold text-center ">Companies</p>
-                <p className="m-4 ">List of companies  registered </p>
+        <div className='pl-2 '>
+            <h1 className='text-xl'>Welcome Admin</h1>
 
-                <div className="overflow-x-auto ">
-                    <table className="table w-full rounded bg-base-100">
-                        <thead>
-                            <tr>
-                                <th>Logo</th>
-                                <th>Company Name</th>
-                                <th>Location</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {dashboardData?.companies.map((company) => (
-                                <tr key={company._id}>
-                                    <td>
-                                        <img src={company?.logo} alt="logo" className="w-10 h-10 rounded-full" />
-                                    </td>
-                                    <td className="font-semibold">{company?.name}</td>
-                                    <td>{company?.location}</td>
-                                    <td>
-                                        <Link
-                                            to={`/admin/dashboard/company/${company?._id}`}
-                                            className="text-blue-600 underline"
-                                        >
-                                            View Job Posts
-                                        </Link>
-                                    </td>
-                                </tr>
+            <div className='flex items-center justify-between p-4 max-sm:flex-col'>
+                <h1 className="mb-4 text-xl font-bold btn btn-primary btn-outline">Companies: {companiesLength}</h1>
+                <h1 className="mb-4 text-xl font-bold btn btn-primary btn-outline">Jobs: {jobsLength}</h1>
+                <h1 className="mb-4 text-xl font-bold btn btn-primary btn-outline">Applicants: {applicants}</h1>
+            </div>
+
+            <div className='flex justify-between gap-4 max-sm:flex-col '>
+                <div className='flex-1'>
+                    <h2 className="mb-4 text-xl font-bold">Latest Companies</h2>
+                    {latestCompanies.length === 0 ? (
+                        <p>No companies found.</p>
+                    ) : (
+                        <div className="flex flex-col gap-2 p-4 border border-gray-700 rounded-lg">
+                            {latestCompanies.map((company) => (
+                                <div
+                                    key={company._id}
+                                    className="p-4 transition rounded shadow-lg "
+                                >
+                                    <div className="flex items-center gap-3 mb-3">
+                                        <img
+                                            src={company.logo}
+                                            alt={company.name}
+                                            className="object-cover w-12 h-12 rounded-full"
+                                        />
+                                        <div>
+                                            <h3 className="text-lg font-semibold">{company.name}</h3>
+                                            <p className="text-sm text-gray-500">{company.location}</p>
+                                        </div>
+                                    </div>
+                                    <p className="text-sm text-gray-400">
+                                        Created on {new Date(company.createdAt).toLocaleDateString()}
+                                    </p>
+                                </div>
                             ))}
-                        </tbody>
-                    </table>
+                        </div>
+                    )}
+                </div>
+
+                {/* ✅ Latest Jobs Section */}
+                <div className='flex-1'>
+                    <h2 className="mb-4 text-xl font-bold">Latest Jobs</h2>
+                    {latestJobs.length === 0 ? (
+                        <p>No jobs found.</p>
+                    ) : (
+                        <div className="flex flex-col gap-2 p-4 border border-gray-700 rounded-lg">
+                            {latestJobs.map((job) => (
+                                <div
+                                    key={job._id}
+                                    className="p-4 transition rounded shadow-lg hover:shadow-lg"
+                                >
+                                    <h3 className="text-lg font-semibold">{job.title}</h3>
+                                    <p className="text-gray-500">{job.location}</p>
+                                    <p className="text-sm text-gray-400">
+                                        Created on {new Date(job.createdAt).toLocaleDateString()}
+                                    </p>
+                                    <p className="text-sm text-gray-400">
+                                        By: {job.created_by?.fullname || 'Unknown'}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
-        </>
-    );
-};
+        </div>
+    )
+}
 
-export default AdminDashboard;
+export default AdminDashboard

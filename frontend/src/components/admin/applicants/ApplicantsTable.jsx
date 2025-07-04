@@ -1,18 +1,13 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import { APPLICATION_API_END_POINT } from '../../../utils/axiosApiConstants';
 import { toast } from 'react-toastify';
-import { setApplicants } from '../../../redux/applicationSlice';
-
 
 //const shortListStatus = () => ['Accepted', 'Rejected']
 
 const ApplicantsTable = ({ fetchAllApplicants }) => {
     const { applicants } = useSelector(store => store.application)
-
-    console.log(applicants);
-
 
     const statusHandler = async (updatedStatus, id) => {
         try {

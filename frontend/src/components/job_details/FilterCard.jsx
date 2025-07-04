@@ -46,8 +46,6 @@ const FilterCard = () => {
                     </button>
                 </div>
             )}
-
-
             <div className='flex gap-2 max-md:items-center max-md:justify-between max-sm:items-center max-sm:justify-between md:flex-col' >
                 <div>
                     <FilterData handleClick={handleClick} filterData={filterDataLocation} selectedValue={selectedValue} />

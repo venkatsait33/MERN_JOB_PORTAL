@@ -42,11 +42,11 @@ const AdminLogin = () => {
         }
     }
 
-     useEffect(() => {
-            if (user) {
-                navigate("/");
-            }
-        })
+    useEffect(() => {
+        if (user) {
+            navigate("/");
+        }
+    })
 
     return (
         <div>
@@ -73,7 +73,7 @@ const AdminLogin = () => {
                                         value={input.password}
                                         onChange={changeEventHandler}
                                         name='password' className="input" placeholder="Password" />
-                                </div>                              
+                                </div>
                             </div>
                             {loading ? <button className='mt-4 btn btn-neutral'><span className="loading loading-spinner loading-lg"></span></button> :
                                 <button type='submit' className="mt-4 btn btn-neutral">Login</button>

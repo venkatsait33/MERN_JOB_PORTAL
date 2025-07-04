@@ -5,6 +5,7 @@ const adminDataSlice = createSlice({
     initialState: {
         companyData: null,
         jobData: null,
+        adminData: null
     },
     reducers: {
         setCompanyData: (state, action) => {
@@ -12,10 +13,13 @@ const adminDataSlice = createSlice({
         },
         setJobsData: (state, action) => {
             state.data = action.payload
+        },
+        setAdminData: (state, action) => {
+            state.data = action.payload
         }
     }
 })
 
-export const { setCompanyData, setJobsData  } = adminDataSlice.actions
+export const { setCompanyData, setAdminData, setJobsData } = adminDataSlice.actions
 
 export default adminDataSlice.reducer
