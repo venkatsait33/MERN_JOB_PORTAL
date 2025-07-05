@@ -113,7 +113,7 @@ export const adminLogin = async (req, res) => {
             _id: user._id,
             email: user.email,
             role: user.role,
-
+            fullname: user.fullname
         }
 
         return res.status(200).cookie('token', token, { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: 'strict' }).json({

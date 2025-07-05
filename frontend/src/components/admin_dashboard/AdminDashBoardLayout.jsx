@@ -75,7 +75,7 @@ const AdminDashBoardLayout = () => {
             <div className='w-full p-4 '>
                 {loading ? (
                     <div className="flex items-center justify-center h-full">
-                        <h1>Loading...</h1>
+                        <span className="loading loading-spinner loading-xl"></span>
                     </div>
                 ) : (
                     <>
