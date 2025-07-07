@@ -9,6 +9,7 @@ import { validateEmail } from '../utils/helper';
 import Input from '../components/Input';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../firebase/firebase';
+import { FaGoogle } from 'react-icons/fa6';
 
 const Login = () => {
     const [input, setInput] = useState({
@@ -28,7 +29,7 @@ const Login = () => {
         try {
             const result = await signInWithPopup(auth, provider);
             const token = await result.user.getIdToken();
-    
+
             // Send token to backend
             const response = await axios.post(`${USER_API_END_POINT}/firebase-login`, { token });
             toast.success(response.data.message);
@@ -38,7 +39,7 @@ const Login = () => {
         } catch (error) {
             console.error("Firebase login error:", error);
         }
-        
+
     };
 
     const submitHandler = async (e) => {
@@ -89,8 +90,10 @@ const Login = () => {
 
                     <div className="card-body">
                         <h1 className='text-xl text-center'>Login</h1>
-                        <div>
-                            <h1 onClick={handleGoogleLogin}>Google Login</h1>                        </div>
+                        <div className='flex items-center justify-center mt-2'>
+                            <button onClick={handleGoogleLogin} className='gap-2 btn btn-outline btn-accent'><span><FaGoogle /></span>Google Login</button>
+                        </div>
+                        <p className="text-center divider">OR</p>
                         <form onSubmit={submitHandler} className='flex flex-col gap-3 '>
                             <div className="fieldset">
 
