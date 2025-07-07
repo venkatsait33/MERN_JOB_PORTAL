@@ -1,9 +1,20 @@
 import jwt from "jsonwebtoken";
+import { firebaseAdmin } from "../firebase/firebase.js";
 import { User } from "../models/user.model.js";
 
 const isAuthenticated = async (req, res, next) => {
     try {
-        const token = req.cookies.token;
+        let token;
+
+        // ✅ 1. Check cookie token (for normal login)
+        if (req.cookies && req.cookies.token) {
+            token = req.cookies.token;
+        }
+        // ✅ 2. Fallback: Check Authorization header (for Firebase login)
+        else if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
+            token = req.headers.authorization.split(" ")[1];
+        }
+
         if (!token) {
             return res.status(401).json({
                 message: "User not authenticated",
@@ -11,18 +22,24 @@ const isAuthenticated = async (req, res, next) => {
             });
         }
 
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        if (!decoded) {
-            return res.status(401).json({
-                message: "Invalid token",
-                success: false
-            });
+        let user;
+
+        try {
+            // ✅ First try verifying JWT (normal login)
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            req.id = decoded.userId; // MongoDB _id
+            user = await User.findById(req.id).select("role");
+        } catch (err) {
+            // 🔥 If JWT fails, try verifying Firebase token
+            console.log("JWT verification failed, trying Firebase token...");
+            const firebaseDecoded = await firebaseAdmin.auth().verifyIdToken(token);
+
+            req.id = firebaseDecoded.uid; // Firebase UID
+
+            // 🔥 Find user in DB by firebaseUID
+            user = await User.findOne({ firebaseUID: firebaseDecoded.uid }).select("role");
         }
 
-        req.id = decoded.userId;
-
-        // ✅ Fetch user role only
-        const user = await User.findById(decoded.userId).select("role");
         if (!user) {
             return res.status(401).json({
                 message: "User not found",
@@ -30,12 +47,13 @@ const isAuthenticated = async (req, res, next) => {
             });
         }
 
-        // ✅ Attach role so authorizeRoles works
+        // ✅ Attach role for authorizeRoles
         req.user = { role: user.role };
 
         next();
+
     } catch (error) {
-        console.log(error);
+        console.error(error);
         return res.status(500).json({ message: "Server error", success: false });
     }
 };

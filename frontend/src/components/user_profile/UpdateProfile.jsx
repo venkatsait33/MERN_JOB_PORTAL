@@ -1,9 +1,10 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { USER_API_END_POINT } from '../../utils/axiosApiConstants';
 import { setUser } from '../../redux/authSlice';
 import { toast } from 'react-toastify';
+import { getAuth } from 'firebase/auth';
 
 const UpdateProfile = ({ open, setOpen }) => {
     const [loading, setLoading] = useState(false);
@@ -27,6 +28,8 @@ const UpdateProfile = ({ open, setOpen }) => {
         setInput({ ...input, file: e.target.files[0] })
     }
 
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
@@ -34,9 +37,8 @@ const UpdateProfile = ({ open, setOpen }) => {
         formData.append('fullname', input.fullname);
         formData.append('email', input.email);
         formData.append('phoneNumber', input.phoneNumber);
-        formData.append('password', input.password);
-        formData.append('bio', input.bio)
-        formData.append('skills', input.skills)
+        formData.append('bio', input.bio);
+        formData.append('skills', input.skills);
 
         if (input.file) {
             formData.append('file', input.file);
@@ -44,25 +46,40 @@ const UpdateProfile = ({ open, setOpen }) => {
 
         try {
             setLoading(true);
+
+            // 🔥 Get Firebase ID token if user logged in via Firebase
+            let authHeader = {};
+            const firebaseAuth = getAuth();
+            const currentUser = firebaseAuth.currentUser;
+
+            if (currentUser) {
+                const idToken = await currentUser.getIdToken(true);
+                authHeader = {
+                    Authorization: `Bearer ${idToken}`
+                };
+            }
+
             const res = await axios.post(`${USER_API_END_POINT}/updateProfile`, formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data',
+                    ...authHeader // 🔥 Attach Authorization header if Firebase user
                 },
-                withCredentials: true
-            })
+                withCredentials: true // ✅ Keep for normal users
+            });
 
             if (res.data.success) {
                 dispatch(setUser(res.data.user));
                 toast.success(res.data.message);
             }
         } catch (error) {
-            toast.error(error.response.data.message);
+            toast.error(error.response?.data?.message || "Something went wrong");
             console.log(error);
         } finally {
             setLoading(false);
+            setOpen(false);
         }
-        setOpen(false);
-    }
+    };
+
     return (
         <div className=''>
             {
@@ -159,7 +176,7 @@ const UpdateProfile = ({ open, setOpen }) => {
                                     onChange={changeFileHandler}
                                     accept='application/pdf'
                                     className="w-full max-w-xl input"
-                                    required
+
                                 />
                             </div>
                             {

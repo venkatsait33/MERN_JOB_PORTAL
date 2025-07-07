@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setLoading, setUser } from '../redux/authSlice';
 import { validateEmail } from '../utils/helper';
 import Input from '../components/Input';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { auth } from '../firebase/firebase';
 
 const Login = () => {
     const [input, setInput] = useState({
@@ -20,6 +22,24 @@ const Login = () => {
     }
     const dispatch = useDispatch();
     const { loading, user } = useSelector(store => store.auth);
+
+    const handleGoogleLogin = async () => {
+        const provider = new GoogleAuthProvider();
+        try {
+            const result = await signInWithPopup(auth, provider);
+            const token = await result.user.getIdToken();
+    
+            // Send token to backend
+            const response = await axios.post(`${USER_API_END_POINT}/firebase-login`, { token });
+            toast.success(response.data.message);
+            dispatch(setUser(response.data.user))
+            navigate('/');
+            console.log(response.data); // User from MongoDB
+        } catch (error) {
+            console.error("Firebase login error:", error);
+        }
+        
+    };
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -69,6 +89,8 @@ const Login = () => {
 
                     <div className="card-body">
                         <h1 className='text-xl text-center'>Login</h1>
+                        <div>
+                            <h1 onClick={handleGoogleLogin}>Google Login</h1>                        </div>
                         <form onSubmit={submitHandler} className='flex flex-col gap-3 '>
                             <div className="fieldset">
 

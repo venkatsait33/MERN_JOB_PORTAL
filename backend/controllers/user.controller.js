@@ -5,6 +5,7 @@ import getDataUri from "../utils/dataUri.js";
 import cloudinary from "../utils/cloudinary.js";
 import transporter from '../utils/nodemailer.js'
 import { EMAIL_VERIFY_TEMPLATE, PASSWORD_RESET_TEMPLATE } from "../utils/emailTemplates.js";
+import { getUserByIdOrFirebaseUID } from "../middleware/getuserbyidorfirebase.js";
 
 export const register = async (req, res) => {
     try {
@@ -219,8 +220,8 @@ export const updateProfile = async (req, res) => {
             skillsArray = skills.split(',');
         }
 
-        const userId = req.id;
-        let user = await User.findById(userId);
+        const user = await getUserByIdOrFirebaseUID(req.id);
+
         if (!user) {
             return res.status(404).json({
                 message: 'User not found',

@@ -34,9 +34,6 @@ const AdminDashBoardLayout = () => {
         fetchCompany();
     }, [])
 
-
-
-
     const renderActiveComponent = () => {
         switch (activeMenu) {
             case 'Dashboard':
@@ -49,7 +46,6 @@ const AdminDashBoardLayout = () => {
                 return <AdminDashboard dashboardData={dashboardData} />;
         }
     };
-
 
     return (
         <div className='flex w-full h-auto'>

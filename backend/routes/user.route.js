@@ -2,8 +2,11 @@ import express from "express";
 import { adminLogin, isUserAuthenticated, login, logout, register, registerAdmin, sendRestOtp, sendVerifyOtp, updateProfile, userRestPassword, verifyEmailWithOtp } from "../controllers/user.controller.js";
 import isAuthenticated from "../middleware/isAuthenticated.js";
 import { singleUpload } from "../utils/mutler.js";
+import { firebaseLogin } from "../controllers/firebaseLogin.user.controller.js";
 
 const router = express.Router();
+
+router.route('/firebase-login').post(firebaseLogin)
 
 router.route('/register').post(singleUpload, register);
 router.route('/admin').post(registerAdmin);
