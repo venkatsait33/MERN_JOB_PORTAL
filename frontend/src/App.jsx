@@ -29,6 +29,7 @@ import JobHistory from './components/user_profile/JobHistory'
 import ScrollToTop from './components/ScroolToTop'
 import AdminDashBoardLayout from './components/admin_dashboard/AdminDashBoardLayout'
 import PageNotFound from './pages/PageNotFound'
+import RecruiterDashboardLayout from './components/admin/RecruiterDashboardLayout'
 
 function App() {
 
@@ -60,14 +61,16 @@ function App() {
           <Route path="/admin/dashboard/job/:id" element={<JobApplicants />} />
           {/* recruiter */}
           {/* Recruiter */}
+          <Route path='/recruiter/dashboard' element={
+            <ProtectedRoute>
+              <RecruiterDashboardLayout />
+            </ProtectedRoute>} />
+          
           <Route path='/recruiter/companies' element={
             <ProtectedRoute>
               <Companies />
             </ProtectedRoute>} />
-          <Route path='/recruiter/companies/create' element={
-            <ProtectedRoute>
-              <CreateCompany />
-            </ProtectedRoute>} />
+          
           <Route path='/recruiter/companies/:id' element={<ProtectedRoute><CompanySetup /></ProtectedRoute>} />
           <Route path='/recruiter/jobs' element={<ProtectedRoute>
             <AdminJobPosts />

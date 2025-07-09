@@ -53,7 +53,7 @@ const CompanySetup = () => {
             })
             if (res.data.success) {
                 toast.success(res.data.message);
-                navigate('/recruiter/companies')
+                navigate('/recruiter/dashboard')
             }
         } catch (error) {
             console.log(error);

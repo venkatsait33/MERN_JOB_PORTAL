@@ -61,6 +61,17 @@ const NavBar = () => {
                                 <>
                                     <li><Link to='/recruiter/companies' className='text-lg font-semibold'>companies</Link></li>
                                     <li><Link to='/recruiter/jobs' className='text-lg font-semibold'>Jobs</Link></li>
+                                    <li>
+                                        {
+                                            user && user.role === 'recruiter' && (
+                                                <div className='' >
+                                                    <Link to='/recruiter/dashboard' className='flex items-center gap-2'>
+                                                        <AiOutlineUser /> View Dashboard
+                                                    </Link>
+                                                </div>
+                                            )
+                                        }
+                                    </li>
                                 </>
                             ) : (<>
                                 <li className=''>
@@ -111,12 +122,24 @@ const NavBar = () => {
                                     user && user.role === 'candidate' && <Link to='/job-history' className='font-semibold md:text-lg'>Job History</Link>
                                 }
 
+                                {
+                                    user && user.role === 'recruiter' && (
+                                        <div className='' >
+                                            <Link to='/recruiter/dashboard' className='flex items-center gap-2 text-xl'>
+                                                <AiOutlineUser /> View Dashboard
+                                            </Link>
+                                        </div>
+                                    )
+                                }
+
                                 <div className="dropdown dropdown-end">
-                                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                        <div className="w-10 rounded-full">
-                                            <img
-                                                alt="Tailwind CSS Navbar component"
-                                                src={user?.profile?.profilePhoto || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} />
+                                    <div tabIndex={0} role="button" className="btn btn-circle">
+                                        <div className="rounded-full avatar ">
+                                            <picture>
+                                                <img
+                                                    alt="Tailwind CSS Navbar component"
+                                                    src={user?.profile?.profilePhoto || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} className='' />
+                                           </picture>
                                         </div>
                                     </div>
                                     <ul
@@ -137,6 +160,7 @@ const NavBar = () => {
                                                 </li>
                                             )
                                         }
+
                                         <li >
                                             {user?.isAccountVerified === false && <button className='text-xl' onClick={sendVerificationOtp}> <span> <MdEmail /></span>Verify Email</button>}
                                         </li>

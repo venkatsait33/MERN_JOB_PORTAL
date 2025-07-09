@@ -11,6 +11,8 @@ const CreateCompany = () => {
     const [companyName, setCompanyName] = useState('');
     const dispatch = useDispatch()
 
+    //http://localhost:8000/api/v1/company/register
+
     const registerNewCompany = async () => {
         try {
             const res = await axios.post(`${COMPANY_API_END_POINT}/register`, { companyName }, {
@@ -19,7 +21,7 @@ const CreateCompany = () => {
                 },
                 withCredentials: true,
             })
-            if (res?.data?.success) {
+            if (res.data.success) {
                 toast.success(res.data.message);
                 dispatch(setSingleCompany(res.data.company))
                 const companyId = res?.data?.company?._id
@@ -38,7 +40,7 @@ const CreateCompany = () => {
                 <h1 className='mb-2 label'> Company Name</h1>
                 <input type="text" onChange={(e) => setCompanyName(e.target.value)} className='w-full input input-bordered input-primary' placeholder='MicroSoft, Google, Amazon' />
                 <div className='flex items-center gap-10 my-10'>
-                    <button onClick={() => navigate('/recruiter/companies')} className=' btn btn-outline'>Cancel</button>
+                    <button onClick={() => navigate('/recruiter')} className=' btn btn-outline'>Cancel</button>
                     <button onClick={registerNewCompany} className=' btn btn-primary'>Continue</button>
                 </div>
             </div>
