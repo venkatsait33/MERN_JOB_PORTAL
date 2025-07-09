@@ -3,6 +3,7 @@ import { adminLogin, isUserAuthenticated, login, logout, register, registerAdmin
 import isAuthenticated from "../middleware/isAuthenticated.js";
 import { singleUpload } from "../utils/mutler.js";
 import { firebaseLogin } from "../controllers/firebaseLogin.user.controller.js";
+import { getAllRecruiterData } from "../controllers/recruiter.controller.js";
 
 const router = express.Router();
 
@@ -14,6 +15,7 @@ router.route('/admin/login').post(adminLogin)
 router.route('/login').post(login);
 router.route('/logout').get(logout);
 router.route('/updateProfile').post(isAuthenticated, singleUpload, updateProfile);
+router.route('/recruiterDetails').get(isAuthenticated, getAllRecruiterData);
 
 // ---------------------------------------------------------
 router.route('/send-verification-otp').post(isAuthenticated, sendVerifyOtp);

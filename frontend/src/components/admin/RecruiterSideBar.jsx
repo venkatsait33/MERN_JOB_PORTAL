@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 const RecruiterSideBar = ({ activeMenu, setActiveMenu, setIsSidebarOpen }) => {
     const { user } = useSelector(store => store.auth)
-    const menuItems = ['Dashboard', 'New Company', 'Companies', 'Jobs',];
+    const menuItems = ['Dashboard', 'New Company', 'New Job', 'Companies', 'Jobs',];
 
     const handleMenuClick = (item) => {
         setActiveMenu(item);
@@ -14,7 +14,7 @@ const RecruiterSideBar = ({ activeMenu, setActiveMenu, setIsSidebarOpen }) => {
     };
 
     return (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 max-sm:ml-4 max-sm:mt-12">
             <h2 className="mb-2 text-xl font-semibold">Recruiter Panel</h2>
             <div className="flex items-center justify-center mx-auto" >
                 <picture className="flex items-center justify-center w-12 h-12 bg-gray-200 rounded-full cursor-pointer md:w-18 md:h-18">

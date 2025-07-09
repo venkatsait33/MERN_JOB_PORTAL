@@ -53,7 +53,7 @@ const CompanySetup = () => {
             })
             if (res.data.success) {
                 toast.success(res.data.message);
-                navigate('/recruiter/dashboard')
+                navigate('/recruiter/dashboard', { state: { activeMenu: 'Companies' } })
             }
         } catch (error) {
             console.log(error);

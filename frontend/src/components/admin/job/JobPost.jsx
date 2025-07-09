@@ -54,7 +54,7 @@ const JobPost = () => {
             description: value || '',
         }));
     };
-    
+
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -69,8 +69,8 @@ const JobPost = () => {
 
             if (res.data.success) {
                 toast.success(res.data.message)
-
-                navigate('/recruiter/jobs')
+                navigate('/recruiter/dashboard', { state: { activeMenu: 'Jobs' } })
+                // setInput(" ")
             }
         } catch (error) {
             console.log(error.response.data.message);
@@ -82,7 +82,7 @@ const JobPost = () => {
     return (
         <div >
             <div className='max-w-4xl mx-auto my-10'>
-                <PostForm submitHandler={submitHandler} changeEventHandler={changeEventHandler} input={input} companies={companies} loading={loading} navigate={navigate} handleSelectHandler={handleSelectHandler} handleDescriptionChange={handleDescriptionChange} name="Job Post" button='Post Job' />
+                <PostForm submitHandler={submitHandler} changeEventHandler={changeEventHandler} input={input} companies={companies} loading={loading} handleSelectHandler={handleSelectHandler} handleDescriptionChange={handleDescriptionChange} name="Job Post" button='Post Job' />
             </div>
         </div>
     )

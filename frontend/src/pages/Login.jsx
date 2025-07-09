@@ -29,7 +29,7 @@ const Login = () => {
         try {
             const result = await signInWithPopup(auth, provider);
             const token = await result.user.getIdToken();
-
+    
             // Send token to backend
             const response = await axios.post(`${USER_API_END_POINT}/firebase-login`, { token });
             toast.success(response.data.message);
@@ -39,7 +39,7 @@ const Login = () => {
         } catch (error) {
             console.error("Firebase login error:", error);
         }
-
+        
     };
 
     const submitHandler = async (e) => {

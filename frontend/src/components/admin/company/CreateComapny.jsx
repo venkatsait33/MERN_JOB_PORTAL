@@ -40,7 +40,7 @@ const CreateCompany = () => {
                 <h1 className='mb-2 label'> Company Name</h1>
                 <input type="text" onChange={(e) => setCompanyName(e.target.value)} className='w-full input input-bordered input-primary' placeholder='MicroSoft, Google, Amazon' />
                 <div className='flex items-center gap-10 my-10'>
-                    <button onClick={() => navigate('/recruiter')} className=' btn btn-outline'>Cancel</button>
+                    <button onClick={() => navigate('/recruiter/dashboard', { state: { activeMenu: 'Companies' } })} className=' btn btn-outline'>Cancel</button>
                     <button onClick={registerNewCompany} className=' btn btn-primary'>Continue</button>
                 </div>
             </div>
