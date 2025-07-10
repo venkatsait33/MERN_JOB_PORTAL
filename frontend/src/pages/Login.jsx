@@ -29,17 +29,15 @@ const Login = () => {
         try {
             const result = await signInWithPopup(auth, provider);
             const token = await result.user.getIdToken();
-    
             // Send token to backend
             const response = await axios.post(`${USER_API_END_POINT}/firebase-login`, { token });
             toast.success(response.data.message);
             dispatch(setUser(response.data.user))
             navigate('/');
-            console.log(response.data); // User from MongoDB
         } catch (error) {
             console.error("Firebase login error:", error);
         }
-        
+
     };
 
     const submitHandler = async (e) => {

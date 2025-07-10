@@ -21,6 +21,8 @@ const TableComponent = ({ companyData, title, link }) => {
     const toggleMenu = (index) => {
         setOpenMenuIndex(prev => (prev === index ? null : index));
     };
+
+    console.log(companyData);
     return (
         <div>
             <h1 className='mt-3 mb-2 font-semibold text-center '>{title}</h1>
@@ -51,7 +53,7 @@ const TableComponent = ({ companyData, title, link }) => {
                                             />
                                         </figure>
                                     </td>
-                                    <td>{item?.name}</td>
+                                    <td><Link to={`/company/description/${item?._id}`} className='link'>{item?.name}</Link></td>
                                     <td>{item.createdAt.split("T")[0]}</td>
                                     <td>
                                         <div

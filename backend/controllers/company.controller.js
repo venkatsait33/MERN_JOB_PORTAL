@@ -1,4 +1,5 @@
 import { Company } from "../models/company.model.js";
+import { Job } from "../models/job.model.js";
 import cloudinary from "../utils/cloudinary.js";
 import getDataUri from "../utils/dataUri.js";
 
@@ -66,7 +67,8 @@ export const getCompany = async (req, res) => {
 export const getCompanyById = async (req, res) => {
     try {
         const companyId = req.params.id;
-        const company = await Company.findById(companyId)
+        
+        const company = await Company.findById(companyId).lean();
         if (!company) {
             return res.status(404).json({
                 message: "Company not found",
@@ -74,10 +76,17 @@ export const getCompanyById = async (req, res) => {
             })
         }
 
-        return res.status(201).json({
+        const jobs = await Job.find({ company: companyId })
+            .select("-__v") // exclude __v field
+            .lean();
+
+        // ✅ Attach jobs to company object
+        company.jobs = jobs;
+
+        return res.status(200).json({
             company,
             success: true
-        })
+        });
     } catch (error) {
         console.log(error);
     }

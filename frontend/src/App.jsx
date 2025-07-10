@@ -30,6 +30,7 @@ import ScrollToTop from './components/ScroolToTop'
 import AdminDashBoardLayout from './components/admin_dashboard/AdminDashBoardLayout'
 import PageNotFound from './pages/PageNotFound'
 import RecruiterDashboardLayout from './components/admin/RecruiterDashboardLayout'
+import CompanyDetails from './components/CompanyDetails'
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
           <Route path='/jobs' element={<Jobs />} />
           <Route path='/browse' element={<Browse />} />
           <Route path='/job/description/:id' element={<JobDescription />} />
+          <Route path='/company/description/:id' element={<CompanyDetails />} />
           <Route path='job-history' element={<JobHistory />} />
 
           {/*  */}
@@ -65,12 +67,12 @@ function App() {
             <ProtectedRoute>
               <RecruiterDashboardLayout />
             </ProtectedRoute>} />
-          
+
           <Route path='/recruiter/companies' element={
             <ProtectedRoute>
               <Companies />
             </ProtectedRoute>} />
-          
+
           <Route path='/recruiter/companies/:id' element={<ProtectedRoute><CompanySetup /></ProtectedRoute>} />
           <Route path='/recruiter/jobs' element={<ProtectedRoute>
             <AdminJobPosts />

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { APPLICATION_API_END_POINT, JOB_API_END_POINT } from '../../utils/axiosApiConstants.js'
 import { useDispatch, useSelector } from 'react-redux'
@@ -167,7 +167,7 @@ const JobDescription = () => {
                         <div>
                             <p className='mt-2 text-xl font-semibold text-center'>About Company</p>
                             <div className='flex flex-col gap-4'>
-                                <p className='flex items-center gap-2 my-1 font-semibold'><FaRegBuilding />Name: <span>{singleJob?.company?.name || "N/A"}</span> </p>
+                                <Link to={`/company/description/${singleJob?.company?._id}`} className='flex items-center gap-2 my-1 font-semibold link'><FaRegBuilding />Name: <span>{singleJob?.company?.name || "N/A"}</span> </Link>
                                 <p className='flex items-center gap-2 my-1 font-semibold'><FaRegBuilding />Address: <span>{singleJob?.company?.location || "N/A"}</span> </p>
                             </div>
                         </div>
