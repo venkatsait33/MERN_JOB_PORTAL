@@ -1,3 +1,4 @@
+import React from 'react'
 
 const AdminDashboard = ({ dashboardData }) => {
     const { companies = [], jobs = [] } = dashboardData;

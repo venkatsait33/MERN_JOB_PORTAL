@@ -11,28 +11,34 @@ import { FaBars } from 'react-icons/fa'
 const AdminDashBoardLayout = () => {
     const [dashboardData, setDashboardData] = useState()
     const [loading, setLoading] = useState(true)
-    const [activeMenu, setActiveMenu] = useState('Dashboard');
+    const [activeMenu, setActiveMenu] = useState(() => {
+        return localStorage.getItem('activeMenu') || 'Dashboard';
+    });
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-    useEffect(() => {
-        const fetchCompany = async () => {
-            setLoading(true)
-            try {
-                const res = await axios.get(`${ADMIN_DETAILS}/recruiters-jobs-candidates`, {
-                    withCredentials: true
-                })
+    const fetchAdminData = async () => {
+        setLoading(true)
+        try {
+            const res = await axios.get(`${ADMIN_DETAILS}/recruiters-jobs-candidates`, {
+                withCredentials: true
+            })
 
-                if (res.data.success) {
-                    setDashboardData(res.data)
-                    // console.log(res.data);
-                    setLoading(false)
-                }
-            } catch (error) {
-                console.log(error);
+            if (res.data.success) {
+                setDashboardData(res.data)
+                setLoading(false)
             }
+        } catch (error) {
+            console.log(error);
         }
-        fetchCompany();
+    }
+
+    useEffect(() => {
+        fetchAdminData();
     }, [])
+
+    useEffect(() => {
+        localStorage.setItem('activeMenu', activeMenu);
+    }, [activeMenu]);
 
     const renderActiveComponent = () => {
         switch (activeMenu) {
@@ -61,7 +67,7 @@ const AdminDashBoardLayout = () => {
 
                 {/* Sidebar */}
                 <div
-                    className={`fixed z-10 max-sm:top-20 left-0 h-full max-sm:bg-base-300 sm:w-1/2 shadow-md transform transition-transform duration-300 ease-in-out
+                    className={`fixed z-10 max-sm:top-16 left-0 h-full max-sm:bg-base-300 max-sm:w-[200px] shadow-md transform transition-transform duration-300 ease-in-out
                 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
                 md:relative md:translate-x-0 md:w-full `}
                 >
@@ -75,11 +81,9 @@ const AdminDashBoardLayout = () => {
                     </div>
                 ) : (
                     <>
-
                         {renderActiveComponent()}
                     </>
                 )}
-
             </div>
         </div>
     )

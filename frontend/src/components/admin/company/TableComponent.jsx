@@ -1,10 +1,15 @@
+import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
 import { FaPencil } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { COMPANY_API_END_POINT } from '../../../utils/axiosApiConstants';
+import UseGetAllCompanies from '../../../hooks/UseGetAllCompanies';
 
 const TableComponent = ({ companyData, title, link }) => {
     const [openMenuIndex, setOpenMenuIndex] = useState(null);
     const menuRefs = useRef([]);
+    const { refetch } = UseGetAllCompanies();
 
     useEffect(() => {
         const handleClickOutside = (e) => {
@@ -22,7 +27,28 @@ const TableComponent = ({ companyData, title, link }) => {
         setOpenMenuIndex(prev => (prev === index ? null : index));
     };
 
-    console.log(companyData);
+    const handleDelete = async (e, companyId) => {
+        e.preventDefault();
+
+        const confirmDelete = window.confirm("Are you sure you want to delete this company?");
+        if (!confirmDelete) return;
+
+        try {
+            const res = await axios.delete(`${COMPANY_API_END_POINT}/delete/${companyId}`, {
+                withCredentials: true
+            });
+            if (res.data.success) {
+                toast.success(res.data.message);
+                refetch(); // 🔥 Reload or remove from UI
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error(error.response?.data?.message || "Something went wrong");
+        }
+    };
+
+
+
     return (
         <div>
             <h1 className='mt-3 mb-2 font-semibold text-center '>{title}</h1>
@@ -81,11 +107,12 @@ const TableComponent = ({ companyData, title, link }) => {
                                                             Edit
                                                         </Link>
                                                         {/* <button className="block w-full px-4 py-2 text-left hover:bg-gray-100">
-                                                        Duplicate
-                                                    </button>
-                                                    <button className="block w-full px-4 py-2 text-left text-red-500 hover:bg-gray-100">
-                                                        Delete
-                                                    </button> */}
+                                                            Duplicate
+                                                        </button> */}
+                                                        <button
+                                                            onClick={(e) => handleDelete(e, item._id)} className="block w-full px-4 py-2 text-left text-red-500 hover:bg-gray-100">
+                                                            Delete
+                                                        </button>
                                                     </div>
                                                 </div>
                                             )}

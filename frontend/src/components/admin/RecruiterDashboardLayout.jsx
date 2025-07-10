@@ -8,32 +8,33 @@ import CreateCompany from "./company/CreateComapny";
 import axios from "axios";
 import { USER_API_END_POINT } from "../../utils/axiosApiConstants";
 import RecruiterDashboard from "./RecruiterDashboard";
-import { useLocation } from "react-router-dom";
 import JobPost from "./job/JobPost";
 
 const RecruiterDashboardLayout = () => {
   const [dashboardData, setDashboardData] = useState({});
-  const location = useLocation()
   const [loading, setLoading] = useState(false);
-  const [activeMenu, setActiveMenu] = useState(location.state?.activeMenu || 'Dashboard');
+  const [activeMenu, setActiveMenu] = useState(() => {
+    return localStorage.getItem('activeMenu') || 'Dashboard';
+  });
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  useEffect(() => {
-    const fetchRecruiterDetails = async () => {
-      setLoading(true)
-      try {
-        const res = await axios.get(`${USER_API_END_POINT}/recruiterDetails`, {
-          withCredentials: true
-        })
+  const fetchRecruiterDetails = async () => {
+    setLoading(true)
+    try {
+      const res = await axios.get(`${USER_API_END_POINT}/recruiterDetails`, {
+        withCredentials: true
+      })
 
-        if (res.data.success) {
-          setDashboardData(res.data)
-          setLoading(false)
-        }
-      } catch (error) {
-        console.log(error);
+      if (res.data.success) {
+        setDashboardData(res.data)
+        setLoading(false)
       }
+    } catch (error) {
+      console.log(error);
     }
+  }
+  
+  useEffect(() => {    
     fetchRecruiterDetails();
   }, [])
 
