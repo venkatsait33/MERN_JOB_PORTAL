@@ -138,7 +138,7 @@ const NavBar = () => {
                                             <picture>
                                                 <img
                                                     alt="Tailwind CSS Navbar component"
-                                                    src={user?.profile?.profilePhoto || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} className='' />
+                                                    src={user?.profile?.profilePhoto || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} className='rounded-full' />
                                            </picture>
                                         </div>
                                     </div>

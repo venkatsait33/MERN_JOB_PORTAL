@@ -87,7 +87,6 @@ const RecruiterDashboardLayout = () => {
           </div>
         ) : (
           <>
-
             {renderActiveComponent()}
           </>
         )}
