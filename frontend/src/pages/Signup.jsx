@@ -72,11 +72,11 @@ const Signup = () => {
     }
 
     return (
-        <div className='flex items-center justify-center min-h-screen '>
-            <div className="w-full max-w-sm shadow-2xl card bg-base-100 shrink-0">
+        <div className='flex items-center justify-center '>
+            <div className="w-full max-w-sm card shrink-0">
 
                 <div className="card-body">
-                    <h1 className='text-xl font-semibold'>Sign Up</h1>
+                    <h1 className='text-xl text-center'>Sign Up</h1>
                     <form onSubmit={submitHandler} className='flex flex-col gap-5 '>
 
                         <div className="fieldset">
@@ -140,7 +140,19 @@ const Signup = () => {
                             <button type='submit' className=" btn btn-neutral">SignUp</button>
                         }
 
-                        <span>Already have an account? <Link to='/login' className='ml-2 link link-primary'>Login</Link></span>
+                        <div className="flex items-center">
+                            Already have an account?
+                            <div
+                                onClick={() => {
+                                    document.getElementById('login_modal').showModal();
+                                    document.getElementById('signup_model').close();
+                                }}
+                                className="ml-2 link link-primary"
+                            >
+                                Login
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>

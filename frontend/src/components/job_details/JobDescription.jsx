@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { APPLICATION_API_END_POINT, JOB_API_END_POINT } from '../../utils/axiosApiConstants.js'
 import { useDispatch, useSelector } from 'react-redux'
@@ -24,7 +24,8 @@ const JobDescription = () => {
     const { singleJob, allJobs } = useSelector(store => store.job)
     const [loading, setLoading] = useState(false)
     const params = useParams()
-    const navigate = useNavigate()
+    const location = useLocation();
+    const navigate = useNavigate();
     const jobId = params.id;
     const dispatch = useDispatch()
     const isInitialApplied = singleJob?.applications?.some(application => application.applicant === user?._id) || false;
@@ -32,9 +33,12 @@ const JobDescription = () => {
     // ✅ Redirect if user not logged in
     useEffect(() => {
         if (!user) {
-            navigate("/login")
+            // Store current location so we can redirect back later
+            localStorage.setItem("redirectAfterLogin", location.pathname);
+            // Open login dialog
+            document.getElementById('login_modal').showModal();
         }
-    }, [user, navigate]);
+    }, [location.pathname]);
 
     const applyJobHandler = async () => {
         try {
@@ -107,7 +111,7 @@ const JobDescription = () => {
                     </div>
                     <div className='flex flex-col items-center gap-2 my-2'>
                         {
-                            user.role === 'candidate' && <button onClick={isApplied ? null : applyJobHandler}
+                            user?.role === 'candidate' && <button onClick={isApplied ? null : applyJobHandler}
                                 disabled={isApplied}
                                 className={`rounded-lg btn ${isApplied ? 'bg-gray-600 cursor-not-allowed' : 'bg-[#7209b7] hover:bg-[#5f32ad]'}`}>
                                 {loading ?
@@ -118,7 +122,6 @@ const JobDescription = () => {
                         }
                         <p className='text-sm text-gray-500'>Posted  {DaysCountFunction(singleJob?.createdAt) === 0 ? "Today" : `${DaysCountFunction(singleJob?.createdAt)} days ago`}</p>
                     </div>
-
                 </div>
             </div>
             <div className='flex gap-5'>
@@ -141,8 +144,6 @@ const JobDescription = () => {
                                 <MDEditor.Markdown source={singleJob?.description} style={{ whiteSpace: 'pre-wrap', backgroundColor: 'transparent', color: 'gray' }} />
                             </div>
                         </div>
-
-
                         <div className='mt-4 max-sm:mb-4'>
                             <p className='text-xl font-semibold text-center'>Job Role</p>
                             <div className='grid grid-cols-2 gap-3 mt-2 max-sm:grid-cols-1'>
@@ -152,7 +153,6 @@ const JobDescription = () => {
                                 <p className='flex items-center gap-2 my-1 font-semibold'><CiLocationOn />Location: <span className='pl-4 font-normal ' > {singleJob?.location || "N/A"}</span></p>
                                 <p className='flex items-center gap-2 my-1 font-semibold'> <FaRegClock />Job Type: <span className='pl-4 font-normal ' >{singleJob?.jobType || "N/A"}</span></p>
                                 <p className='flex items-center gap-2 my-1 font-semibold'><CgDarkMode />Job Shift: <span className='pl-4 font-normal ' > {singleJob?.jobShifts || "N/A"}</span></p>
-
                             </div>
                         </div>
                         <div className='mt-2 max-sm:mb-4'>

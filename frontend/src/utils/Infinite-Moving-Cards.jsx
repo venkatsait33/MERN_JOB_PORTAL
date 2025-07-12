@@ -65,7 +65,7 @@ export const InfiniteMovingCards = ({
             <ul
                 ref={scrollerRef}
                 className={cn(
-                    " flex min-w-full shrink-0  gap-4 py-4 w-max flex-nowrap",
+                    " flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap",
                     start && "animate-scroll ",
                     pauseOnHover && "hover:[animation-play-state:paused]"
                 )}>
@@ -77,7 +77,7 @@ export const InfiniteMovingCards = ({
                             key={item.name}
                             onClick={() => handleClick(item)} // ✅ OnClick
                             className={`w-[180px] flex items-center justify-center mx-auto border rounded-lg shadow-md cursor-pointer transition-transform duration-200 
-              ${isSelected ? 'bg-blue-600 scale-105 text-white' : 'bg-slate-900 text-gray-100 hover:scale-105'}`}
+              ${isSelected ? 'bg-blue-600 scale-105 text-white' : ' hover:scale-105'}`}
                             style={{
                                 background: isSelected
                                     ? 'linear-gradient(180deg, #2563eb, #1e40af)'
@@ -85,7 +85,7 @@ export const InfiniteMovingCards = ({
                             }}
                         >
                             <blockquote>
-                                <span className="z-20 text-lg font-normal text-center">
+                                <span className="z-20 font-normal text-center ">
                                     {item}
                                 </span>
                             </blockquote>

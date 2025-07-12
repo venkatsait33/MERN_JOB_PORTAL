@@ -23,23 +23,27 @@ const Login = () => {
     }
     const dispatch = useDispatch();
     const { loading, user } = useSelector(store => store.auth);
+    const redirectPath = localStorage.getItem("redirectAfterLogin") || "/";
+    localStorage.removeItem("redirectAfterLogin");
 
     const handleGoogleLogin = async () => {
         const provider = new GoogleAuthProvider();
         try {
             const result = await signInWithPopup(auth, provider);
             const token = await result.user.getIdToken();
-    
+
             // Send token to backend
             const response = await axios.post(`${USER_API_END_POINT}/firebase-login`, { token });
             toast.success(response.data.message);
             dispatch(setUser(response.data.user))
-            navigate('/');
+            const redirectPath = localStorage.getItem("redirectAfterLogin") || "/";
+            localStorage.removeItem("redirectAfterLogin"); // Clean up
+            navigate(redirectPath);
             console.log(response.data); // User from MongoDB
         } catch (error) {
             console.error("Firebase login error:", error);
         }
-        
+
     };
 
     const submitHandler = async (e) => {
@@ -67,7 +71,8 @@ const Login = () => {
 
             if (res.data.success) {
                 dispatch(setUser(res.data.user))
-                navigate('/');
+               // Clean up
+                navigate(redirectPath);
                 toast.success(res.data.message);
             }
         } catch (error) {
@@ -84,9 +89,9 @@ const Login = () => {
     })
     return (
         <div>
-            <div className='flex items-center justify-center min-h-screen '>
+            <div className='flex items-center justify-center '>
 
-                <div className="w-full max-w-sm shadow-2xl card bg-base-100 shrink-0">
+                <div className="w-full max-w-sm card shrink-0">
 
                     <div className="card-body">
                         <h1 className='text-xl text-center'>Login</h1>
@@ -142,7 +147,10 @@ const Login = () => {
                             {loading ? <button className='mt-2 btn btn-neutral'><span className="loading loading-spinner loading-lg"></span></button> :
                                 <button type='submit' className="mt-2 btn btn-neutral">Login</button>
                             }
-                            <span>Create a new account? <Link to='/signup' className='ml-2 link link-primary'>Sign Up</Link></span>
+                            <div className='flex items-center'>Create a new account? <div onClick={() => {
+                                document.getElementById('signup_model').showModal();
+                                document.getElementById('login_modal').close();
+                            }} className='ml-2 link link-primary'>Sign Up</div></div>
                         </form>
                     </div>
                 </div>
