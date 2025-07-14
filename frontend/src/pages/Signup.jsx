@@ -4,7 +4,7 @@ import axios from 'axios'
 import { USER_API_END_POINT } from '../utils/axiosApiConstants';
 import { toast } from 'react-toastify';
 import Input from '../components/Input';
-import ProfilePictureSelector from '../components/ProfilePictureSelector';
+import ProfilePictureSelector from '../utils/ProfilePictureSelector';
 
 const Signup = () => {
     const [loading, setLoading] = useState(false);

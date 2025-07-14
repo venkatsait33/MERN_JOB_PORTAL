@@ -23,8 +23,6 @@ const Login = () => {
     }
     const dispatch = useDispatch();
     const { loading, user } = useSelector(store => store.auth);
-    const redirectPath = localStorage.getItem("redirectAfterLogin") || "/";
-    localStorage.removeItem("redirectAfterLogin");
 
     const handleGoogleLogin = async () => {
         const provider = new GoogleAuthProvider();
@@ -71,7 +69,8 @@ const Login = () => {
 
             if (res.data.success) {
                 dispatch(setUser(res.data.user))
-               // Clean up
+                const redirectPath = localStorage.getItem("redirectAfterLogin") || "/";
+                localStorage.removeItem("redirectAfterLogin"); // Clean up
                 navigate(redirectPath);
                 toast.success(res.data.message);
             }

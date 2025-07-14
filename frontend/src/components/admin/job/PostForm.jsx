@@ -1,5 +1,5 @@
 import { IoArrowBack } from 'react-icons/io5'
-import { englishLevel, jobCategory, jobType, locations, gender, jobShifts, department } from '../../selectOptionsData'
+import { englishLevel, jobCategory, jobType, locations, gender, jobShifts, department } from '../../../utils/UtilsData'
 import MDEditor, { commands } from '@uiw/react-md-editor';
 
 

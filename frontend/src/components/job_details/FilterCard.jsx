@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setSearchQuery } from '../../redux/jobSlice';
-import { filterDataLocation, filterDataLocationCategory } from '../selectOptionsData';
+import { filterDataLocation, filterDataLocationCategory } from '../../utils/UtilsData';
 import UseGetAllJobs from '../../hooks/UseGetAllJobs';
 import FilterData from './FilterData';
 

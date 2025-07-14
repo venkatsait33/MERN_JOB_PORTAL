@@ -1,13 +1,11 @@
-import HomeCoverSection from '../components/HomeCoverSection'
-import PopularSearch from '../components/PopularSearch'
+import HomeCoverSection from '../components/home_page/HomeCoverSection'
+import PopularSearch from '../components/home_page/PopularSearch'
 import JobOpeningsSection from '../components/job_details/JobOpeningsSection'
-import { FaStar } from "react-icons/fa6";
-import { MdFileDownload } from "react-icons/md";
 import UseGetAllJobs from '../hooks/UseGetAllJobs'
 import LatestJobs from '../components/job_details/LatestJobs'
 import { useNavigate } from 'react-router-dom'
-import PlayStoreApp from '../components/PlayStoreApp';
-import Reviews from '../components/Reviews';
+import PlayStoreApp from '../components/home_page/PlayStoreApp';
+import Reviews from '../components/home_page/Reviews';
 
 const HomePage = () => {
     UseGetAllJobs();
