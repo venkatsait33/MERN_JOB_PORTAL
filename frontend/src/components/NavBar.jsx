@@ -47,7 +47,7 @@ const NavBar = () => {
     }
 
     return (
-        <div className="flex items-center shadow-sm max-sm:p-2 md:pr-10 md:pl-10 navbar bg-base-100">
+        <div className="fixed inset-x-0 top-0 z-10 flex items-center shadow-sm max-sm:p-2 md:pr-10 bg-base-100 md:pl-10 navbar ">
 
             <div className='sm:navbar-start sm:hidden'>
                 <div className="dropdown">
@@ -183,7 +183,7 @@ const NavBar = () => {
                             <div>
                                 <div className='flex items-center gap-4 p-2'>
                                     <div>
-                                        <button className="ont-semibold  text-[#1F8268]" onClick={() => document.getElementById('signup_model').showModal()}>SignUp</button>
+                                        <button className="font-semibold hover:cursor-pointer  text-[#1F8268]" onClick={() => document.getElementById('signup_model').showModal()}>SignUp</button>
                                         <dialog id="signup_model" className="modal">
                                             <div className="modal-box">
                                                 <form method="dialog">

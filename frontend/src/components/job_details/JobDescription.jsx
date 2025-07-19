@@ -128,18 +128,18 @@ const JobDescription = () => {
                 <div className='flex flex-col md:w-[80%] p-4 transition border rounded-lg shadow-sm border-base-200 hover:shadow-md mt-2 '>
                     <h1 className='mt-3 font-medium '>Job Description</h1>
                     <div className='grid grid-cols-2 gap-3 py-2 border-b-2 max-sm:grid-cols-1 border-b-gray-300'>
-                        <p className='my-1 font-semibold'>Posted Date: <span className='pl-4 font-normal ' >{singleJob?.createdAt?.split('T')[0]}</span></p>
+                        <p className='my-1 font-semibold'>Posted Date: <span className='pl-4 ' >{singleJob?.createdAt?.split('T')[0]}</span></p>
                         <p className='my-1 font-semibold'>Total Applicants: <span className='pl-4 font-normal ' >{singleJob?.applications?.length || 0} </span></p>
                     </div>
                     <>
                         <div className='grid grid-cols-2 gap-3 mt-2 mb-4 max-sm:grid-cols-1'>
                             <p className='my-1 mt-4 font-semibold'>Job Title: <span className='pl-4 font-normal ' >{singleJob?.title}</span></p>
 
-                            <p className='flex items-center gap-2 my-1 font-semibold'><FaIndianRupeeSign />Salary: <span className='pl-4 font-normal '> {singleJob?.salary || "N/A"}</span></p>
+                            <p className='flex items-center gap-2 my-1 '><FaIndianRupeeSign />Salary: <span className='pl-4 font-semibold'> {singleJob?.salary || "N/A"}</span></p>
                         </div>
                         <div tabIndex={0} className=" collapse collapse-arrow">
                             <input type="checkbox" />
-                            <div className="font-semibold collapse-title">Job Description</div>
+                            <div className="font-semibold collapse-title">Description</div>
                             <div className=" max-sm:mb-4 collapse-content">
                                 <MDEditor.Markdown source={singleJob?.description} style={{ whiteSpace: 'pre-wrap', backgroundColor: 'transparent', color: 'gray' }} />
                             </div>
@@ -147,27 +147,27 @@ const JobDescription = () => {
                         <div className='mt-4 max-sm:mb-4'>
                             <p className='text-xl font-semibold text-center'>Job Role</p>
                             <div className='grid grid-cols-2 gap-3 mt-2 max-sm:grid-cols-1'>
-                                <p className='flex items-center gap-2 my-1 font-semibold'><FaRegBuilding />Department: <span className='pl-4 font-normal ' >
+                                <p className='flex items-center gap-2 my-1 '><span className='flex items-center gap-2 my-1 text-gray-400'><FaRegBuilding  />Department: </span><span className='pl-4 font-semibold' >
                                     {singleJob?.department || "N/A"}</span></p>
-                                <p className='flex items-center gap-2 my-1 font-semibold'><TbCategoryPlus />Role/Category: <span className='pl-4 font-normal ' > {singleJob?.category || "N/A"}</span></p>
-                                <p className='flex items-center gap-2 my-1 font-semibold'><CiLocationOn />Location: <span className='pl-4 font-normal ' > {singleJob?.location || "N/A"}</span></p>
-                                <p className='flex items-center gap-2 my-1 font-semibold'> <FaRegClock />Job Type: <span className='pl-4 font-normal ' >{singleJob?.jobType || "N/A"}</span></p>
-                                <p className='flex items-center gap-2 my-1 font-semibold'><CgDarkMode />Job Shift: <span className='pl-4 font-normal ' > {singleJob?.jobShifts || "N/A"}</span></p>
+                                <p className='flex items-center gap-2 my-1 '><span className='flex items-center gap-2 my-1 text-gray-400' ><TbCategoryPlus />Role/Category:</span> <span className='pl-4 font-semibold' > {singleJob?.category || "N/A"}</span></p>
+                                <p className='flex items-center gap-2 my-1 '><span className='flex items-center gap-2 my-1 text-gray-400'><CiLocationOn />Location:</span> <span className='pl-4 font-semibold' > {singleJob?.location || "N/A"}</span></p>
+                                <p className='flex items-center gap-2 my-1 '> <span className='flex items-center gap-2 my-1 text-gray-400'><FaRegClock />Job Type:</span> <span className='pl-4 font-semibold' >{singleJob?.jobType || "N/A"}</span></p>
+                                <p className='flex items-center gap-2 my-1 '><span className='flex items-center gap-2 my-1 text-gray-400'><CgDarkMode />Job Shift: </span><span className='pl-4 font-semibold' > {singleJob?.jobShifts || "N/A"}</span></p>
                             </div>
                         </div>
                         <div className='mt-2 max-sm:mb-4'>
                             <p className='text-xl font-semibold text-center'>Job requirements</p>
                             <div className='grid grid-cols-2 gap-3 mt-2 max-sm:grid-cols-1'>
-                                <p className='flex items-center gap-2 my-1 font-semibold'><PiHandbagSimpleBold />Experience: <span className='pl-4 font-normal ' >{singleJob?.experience || "N/A"} yr</span></p>
-                                <p className='flex items-center gap-2 my-1 font-semibold'> <LuUsersRound />Gender: <span className='pl-4 font-normal ' >{singleJob?.gender || "N/A"}</span></p>
-                                <p className='flex items-center gap-2 my-1 font-semibold'><FaGraduationCap />Education: <span className='pl-4 font-normal ' >{singleJob?.education || "N/A"}</span></p>
-                                <p className='flex items-center gap-2 my-1 font-semibold'><RiEnglishInput />English Level: <span className='pl-4 font-normal ' >{singleJob?.englishLevel || "N/A"}</span></p>
+                                <p className='flex items-center gap-2 my-1 '><span className='flex items-center gap-2 my-1 text-gray-400'><PiHandbagSimpleBold />Experience:</span> <span className='pl-4font-semibold' >{singleJob?.experience || "N/A"} yr</span></p>
+                                <p className='flex items-center gap-2 my-1 '> <span className='flex items-center gap-2 my-1 text-gray-400'><LuUsersRound />Gender: </span><span className='pl-4 font-semibold' >{singleJob?.gender || "N/A"}</span></p>
+                                <p className='flex items-center gap-2 my-1 '><span className='flex items-center gap-2 my-1 text-gray-400'><FaGraduationCap />Education:</span> <span className='pl-4 font-semibold' >{singleJob?.education || "N/A"}</span></p>
+                                <p className='flex items-center gap-2 my-1 '><span className='flex items-center gap-2 my-1 text-gray-400'><RiEnglishInput />English Level:</span> <span className='pl-4 font-semibold' >{singleJob?.englishLevel || "N/A"}</span></p>
                             </div>
                         </div>
                         <div>
                             <p className='mt-2 text-xl font-semibold text-center'>About Company</p>
                             <div className='flex flex-col gap-4'>
-                                <Link to={`/company/description/${singleJob?.company?._id}`} className='flex items-center gap-2 my-1 font-semibold link'><FaRegBuilding />Name: <span>{singleJob?.company?.name || "N/A"}</span> </Link>
+                                <Link to={`/company/description/${singleJob?.company?._id}`} className='flex items-center gap-2 my-1 font-semibold '><FaRegBuilding />Name: <span className='link'>{singleJob?.company?.name || "N/A"}</span> </Link>
                                 <p className='flex items-center gap-2 my-1 font-semibold'><FaRegBuilding />Address: <span>{singleJob?.company?.location || "N/A"}</span> </p>
                             </div>
                         </div>
