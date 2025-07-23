@@ -3,9 +3,11 @@ import Job from './Job';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchQuery } from '../../redux/jobSlice';
 import UseGetAllJobs from '../../hooks/UseGetAllJobs';
+import { Link } from 'react-router-dom';
+import { CgHome } from 'react-icons/cg';
 
 const Browse = () => {
-    const { allJobs } = useSelector(store => store.job);
+    const { allJobs, searchQuery } = useSelector(store => store.job);
     const dispatch = useDispatch();
     UseGetAllJobs();
     useEffect(() => {
@@ -17,10 +19,20 @@ const Browse = () => {
     return (
         <div>
             <div className='p-4 mx-auto max-w-7xl max-sm:p-3'>
-                <h1 className='my-10 text-xl font-bold'>Search Results ({allJobs.length})</h1>
+                <div>
+                    <div className="text-sm breadcrumbs">
+                        <ul>
+                            <li className='flex gap-2 item-center'>
+                                <CgHome />
+                                <Link to='/'>Home</Link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <h1 className='my-10 text-xl font-bold'>Search Results ({allJobs?.length})</h1>
                 {/* {searchQuery && <h1 className='my-10 text-xl font-bold'>Search Results "{searchQuery}"</h1>} */}
                 <div className='grid grid-cols-2 gap-4 max-sm:grid-cols-1'>
-                    {allJobs.map((job) => (
+                    {allJobs?.map((job) => (
                         <div key={job._id}>
                             <Job job={job} />
                         </div>

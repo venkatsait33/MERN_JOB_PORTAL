@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { APPLICATION_API_END_POINT, JOB_API_END_POINT } from '../../utils/axiosApiConstants.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSingleJob } from '../../redux/jobSlice.js'
 import { toast } from 'react-toastify';
-import { IoArrowBack } from "react-icons/io5";
 import { DaysCountFunction } from '../../utils/DaysCountFunction.jsx'
 import { MdOutlineHomeWork } from "react-icons/md";
 import { CiLocationOn } from 'react-icons/ci'
@@ -15,7 +14,7 @@ import { FaGraduationCap, FaRegClock } from "react-icons/fa";
 import { RiEnglishInput } from "react-icons/ri";
 import { PiHandbagSimpleBold } from "react-icons/pi";
 import { TbCategoryPlus } from "react-icons/tb";
-import { CgDarkMode } from "react-icons/cg";
+import { CgDarkMode, CgHome } from "react-icons/cg";
 import MDEditor from '@uiw/react-md-editor'
 import SimilarJobs from './SimilarJobs.jsx'
 
@@ -25,7 +24,6 @@ const JobDescription = () => {
     const [loading, setLoading] = useState(false)
     const params = useParams()
     const location = useLocation();
-    const navigate = useNavigate();
     const jobId = params.id;
     const dispatch = useDispatch()
     const isInitialApplied = singleJob?.applications?.some(application => application.applicant === user?._id) || false;
@@ -67,8 +65,8 @@ const JobDescription = () => {
                     withCredentials: true
                 })
                 if (res.data.success) {
-                    dispatch(setSingleJob(res.data.job));
-                    setIsApplied(res.data.job.applications.some(application => application.applicant === user?._id))
+                    dispatch(setSingleJob(res?.data?.job));
+                    setIsApplied(res?.data?.job?.applications.some(application => application.applicant === user?._id))
                 }
             } catch (error) {
                 console.log(error);
@@ -83,8 +81,16 @@ const JobDescription = () => {
     return (
         <div className='p-8 mx-auto lg:max-w-7xl'>
             <div className='mb-4 '>
-                <button onClick={() => navigate(-1)} className='text-2xl hover:border-gray-300 btn btn-circle btn-sm'><IoArrowBack />
-                </button>
+                <div className="text-sm breadcrumbs">
+                    <ul>
+                        <li className='flex gap-2 item-center'>
+                            <CgHome />
+                            <Link to='/'>Home</Link></li>
+                        <li >
+                            <Link to='/jobs'>Jobs</Link></li>
+                        <li><a>{singleJob?.category}</a></li>
+                    </ul>
+                </div>
             </div>
             <div className='p-10 border shadow-xl md:h-48 bg-base-200 rounded-2xl'>
                 <div className='flex items-center justify-between md:gap-10 max-sm:gap-5 max-sm:flex-col'>
@@ -147,7 +153,7 @@ const JobDescription = () => {
                         <div className='mt-4 max-sm:mb-4'>
                             <p className='text-xl font-semibold text-center'>Job Role</p>
                             <div className='grid grid-cols-2 gap-3 mt-2 max-sm:grid-cols-1'>
-                                <p className='flex items-center gap-2 my-1 '><span className='flex items-center gap-2 my-1 text-gray-400'><FaRegBuilding  />Department: </span><span className='pl-4 font-semibold' >
+                                <p className='flex items-center gap-2 my-1 '><span className='flex items-center gap-2 my-1 text-gray-400'><FaRegBuilding />Department: </span><span className='pl-4 font-semibold' >
                                     {singleJob?.department || "N/A"}</span></p>
                                 <p className='flex items-center gap-2 my-1 '><span className='flex items-center gap-2 my-1 text-gray-400' ><TbCategoryPlus />Role/Category:</span> <span className='pl-4 font-semibold' > {singleJob?.category || "N/A"}</span></p>
                                 <p className='flex items-center gap-2 my-1 '><span className='flex items-center gap-2 my-1 text-gray-400'><CiLocationOn />Location:</span> <span className='pl-4 font-semibold' > {singleJob?.location || "N/A"}</span></p>

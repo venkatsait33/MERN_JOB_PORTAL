@@ -1,4 +1,4 @@
-import { FaQuoteLeft, FaStar, FaStarHalf } from 'react-icons/fa6'
+import {  FaStar, FaStarHalf } from 'react-icons/fa6'
 import { ImQuotesLeft } from "react-icons/im";
 import { FaRegCheckCircle } from "react-icons/fa";
 
@@ -39,7 +39,7 @@ const reviewsData = [
 const Reviews = () => {
     return (
         <div className='md:h-[500px] max-sm:flex max-sm:flex-col md:flex'>
-            <div className='md:w-[20%] '>
+            <div className='w-[20%] max-md:w-[40%] max-sm:w-full '>
                 <div className='bg-[#1F8268] h-[500px] flex justify-center items-center flex-col'>
                     <div className='bg-[#62A795] btn btn-circle w-22 h-22'>
                         <ImQuotesLeft className='w-12 h-12 ' />

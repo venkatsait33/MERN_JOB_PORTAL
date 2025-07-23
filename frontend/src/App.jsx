@@ -6,45 +6,11 @@ import useNetworkStatus from './utils/UseNetworkStatus'
 import { AdminDashBoardLayout, AdminJobPosts, AdminLogin, AdminRegister, Applicants, Browse, Companies, CompanyDetails, CompanyJobs, CompanySetup, EmailVerification, Footer, HomePage, JobApplicants, JobDescription, JobHistory, JobPost, Jobs, NavBar, PageNotFound, Profile, ProtectedRoute, RecruiterDashboardLayout, RestPassword, UpdateJobPost } from './components'
 
 function App() {
-  const isOnline = useNetworkStatus();
-  const [showBanner, setShowBanner] = useState(false);
-  const [bannerMessage, setBannerMessage] = useState("");
-  const [bannerColor, setBannerColor] = useState("");
-  const [wasOffline, setWasOffline] = useState(false);
-
-  useEffect(() => {
-    if (!isOnline) {
-      // User went offline
-      setWasOffline(true);
-      setBannerMessage("🚫 No Internet Connection");
-      setBannerColor("bg-red-600");
-      setShowBanner(true);
-    } else if (wasOffline && isOnline) {
-      // User reconnected after being offline
-      setBannerMessage("✅ Internet Connected");
-      setBannerColor("bg-green-600");
-      setShowBanner(true);
-
-      // Hide the "Internet Connected" banner after 3 seconds
-      const timer = setTimeout(() => {
-        setShowBanner(false);
-      }, 3000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [isOnline, wasOffline]);
+  
 
   return (
     <>
-      <div>
-        {showBanner && (
-          <div
-            className={`fixed top-0 left-0 right-0 text-center p-2 z-50 text-white ${bannerColor} transition-all duration-500`}
-          >
-            {bannerMessage}
-          </div>
-        )}
-      </div>
+     
       <ScrollToTop />
       <div className='max-h-screen mx-auto max-w-screen-2xl no-scrollbar'>
         <NavBar />

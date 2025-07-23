@@ -7,8 +7,8 @@ const router = express.Router()
 
 router.route('/post').post(isAuthenticated, postJob)
 router.route('/:id/update').put(isAuthenticated, updateJob)
-router.route('/get').get(isAuthenticated, getAllJobs)
-router.route('/get/:id').get(isAuthenticated, getJobById)
+router.route('/get').get(getAllJobs)
+router.route('/get/:id').get(getJobById)
 router.route('/getrecruiterjobs').get(isAuthenticated, getRecruiterJobs)
 
 export default router

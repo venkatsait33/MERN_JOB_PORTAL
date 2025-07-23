@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { USER_API_END_POINT } from '../utils/axiosApiConstants';
 import { toast } from 'react-toastify';

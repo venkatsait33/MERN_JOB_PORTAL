@@ -1,11 +1,7 @@
-import HomeCoverSection from '../components/home_page/HomeCoverSection'
-import PopularSearch from '../components/home_page/PopularSearch'
-import JobOpeningsSection from '../components/job_details/JobOpeningsSection'
 import UseGetAllJobs from '../hooks/UseGetAllJobs'
-import LatestJobs from '../components/job_details/LatestJobs'
 import { useNavigate } from 'react-router-dom'
-import PlayStoreApp from '../components/home_page/PlayStoreApp';
-import Reviews from '../components/home_page/Reviews';
+import { HomeCoverSection, JobOpeningsSection, LatestJobs, PlayStoreApp, PopularSearch, Reviews } from '../components/home_page'
+
 
 const HomePage = () => {
     UseGetAllJobs();
