@@ -5,6 +5,7 @@ import { APPLICATION_API_END_POINT, JOB_API_END_POINT } from '../../utils/axiosA
 import { useDispatch, useSelector } from 'react-redux'
 import { setSingleJob } from '../../redux/jobSlice.js'
 import { toast } from 'react-toastify';
+import { IoArrowBack } from "react-icons/io5";
 import { DaysCountFunction } from '../../utils/DaysCountFunction.jsx'
 import { MdOutlineHomeWork } from "react-icons/md";
 import { CiLocationOn } from 'react-icons/ci'

@@ -1,5 +1,5 @@
-import React from 'react'
 import { FaCopyright, FaFacebook, FaInstagram, FaLinkedinIn, FaTwitter, FaYoutube } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -42,8 +42,9 @@ const Footer = () => {
                     <div className=' divider'></div>
                     <div className='flex items-center gap-4 font-semibold'>
                         <p className='flex items-center gap-1'><FaCopyright /> 2025 | All rights reserved</p>
-                        <p>Privacy policy</p>
-                        <p>Terms & Conditions</p>
+                        <Link to='about' className='link'>About Us</Link>
+                        <Link to='/privacy' className="link">Privacy policy</Link>
+                        <Link to='terms' className="link">Terms & Conditions</Link>
                     </div>
                 </div>
             </div>

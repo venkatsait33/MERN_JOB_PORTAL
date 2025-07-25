@@ -1,16 +1,13 @@
 import './App.css'
-import { useEffect, useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import ScrollToTop from './utils/ScroolToTop'
-import useNetworkStatus from './utils/UseNetworkStatus'
-import { AdminDashBoardLayout, AdminJobPosts, AdminLogin, AdminRegister, Applicants, Browse, Companies, CompanyDetails, CompanyJobs, CompanySetup, EmailVerification, Footer, HomePage, JobApplicants, JobDescription, JobHistory, JobPost, Jobs, NavBar, PageNotFound, Profile, ProtectedRoute, RecruiterDashboardLayout, RestPassword, UpdateJobPost } from './components'
+import { AboutUs, AdminDashBoardLayout, AdminJobPosts, AdminLogin, AdminRegister, Applicants, Browse, Companies, CompanyDetails, CompanyJobs, CompanySetup, EmailVerification, Footer, HomePage, JobApplicants, JobDescription, JobHistory, JobPost, Jobs, NavBar, PageNotFound, Privacy, Profile, ProtectedRoute, RecruiterDashboardLayout, RestPassword, TermsAndServices, UpdateJobPost } from './components'
 
 function App() {
-  
+  const navigate = useNavigate()
 
   return (
     <>
-     
       <ScrollToTop />
       <div className='max-h-screen mx-auto max-w-screen-2xl no-scrollbar'>
         <NavBar />
@@ -22,6 +19,9 @@ function App() {
             <Route path='/job/description/:id' element={<JobDescription />} />
             <Route path='/company/description/:id' element={<CompanyDetails />} />
             <Route path='job-history' element={<JobHistory />} />
+            <Route path='about' element={<AboutUs navigate={navigate} />} />
+            <Route path='privacy' element={<Privacy navigate={navigate} />} />
+            <Route path='terms' element={<TermsAndServices navigate={navigate} />} />
 
             {/*  */}
             <Route path='/profile' element={<Profile />} />
@@ -63,8 +63,6 @@ function App() {
             <Route path='*' element={<PageNotFound />} />
           </Routes>
         </div>
-
-
         <Footer />
       </div>
     </>

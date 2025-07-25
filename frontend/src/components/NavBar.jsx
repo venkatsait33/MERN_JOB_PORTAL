@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AiOutlineUser } from "react-icons/ai";
 import { IoIosLogOut } from "react-icons/io";
 import axios from 'axios';
@@ -23,6 +23,22 @@ const NavBar = () => {
     const [bannerMessage, setBannerMessage] = useState("");
     const [bannerColor, setBannerColor] = useState("");
     const [wasOffline, setWasOffline] = useState(false);
+    const location = useLocation();
+
+    const handleClose = () => {
+        const modal = document.getElementById("login_modal");
+
+        // Close the modal
+        modal.close();
+
+        // If not on homepage, go back
+        if (location.pathname !== "/") {
+            // Delay to allow modal to visibly close
+            setTimeout(() => {
+                navigate(-1); // Go to previous page
+            }, 100);
+        }
+    };
 
     useEffect(() => {
         if (!isOnline) {
@@ -235,7 +251,7 @@ const NavBar = () => {
                                                 <div className="modal-box">
                                                     <form method="dialog">
                                                         {/* if there is a button in form, it will close the modal */}
-                                                        <button className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2" onClick={() => document.getElementById('login_modal').close()}>✕</button>
+                                                        <button className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2" onClick={handleClose} type='button'>✕</button>
                                                     </form>
                                                     <Login />
                                                 </div>

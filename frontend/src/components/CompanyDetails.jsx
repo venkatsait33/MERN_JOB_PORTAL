@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { COMPANY_API_END_POINT } from '../utils/axiosApiConstants';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { MdOutlineHomeWork } from 'react-icons/md';
@@ -9,7 +9,6 @@ import { BsBrowserChrome } from "react-icons/bs";
 import { IoArrowBack } from 'react-icons/io5';
 
 const CompanyDetails = () => {
-
     const [company, setCompany] = useState({});
     const params = useParams()
     const companyId = params.id;
@@ -37,7 +36,7 @@ const CompanyDetails = () => {
                 <button onClick={() => navigate(-1)} className='text-2xl hover:border-gray-300 btn btn-circle btn-sm'><IoArrowBack />
                 </button>
             </div>
-            <div className='p-10 border shadow-xl md:h-52 bg-base-200 rounded-2xl'>                
+            <div className='p-10 border shadow-xl md:h-52 bg-base-200 rounded-2xl'>
                 <div className='flex items-center justify-between md:gap-10 max-sm:gap-5 max-sm:flex-col'>
                     <div className='flex items-center gap-10 max-sm:flex-col lg:flex-row'>
                         <div className='rounded-full '>

@@ -22,6 +22,19 @@ export {
 export {
     default as Admin_Dashboard
 } from './Admin_Dashboard.jsx'
+
+export {
+    default as AboutUs
+} from '../pages/AboutUs.jsx'
+
+export {
+    default as Privacy
+} from '../pages/Privacy.jsx'
+
+export {
+    default as TermsAndServices
+} from '../pages/TermsAndServices.jsx'
+
 export {
     default as CompanyDetails
 } from './CompanyDetails.jsx'
