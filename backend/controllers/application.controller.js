@@ -69,6 +69,89 @@ export const applyJob = async (req, res) => {
     }
 }
 
+// {
+//     import { transporter } from "../utils/mailer.js";
+
+//     export const applyJob = async (req, res) => {
+//         try {
+//             const userId = req.id;
+//             const jobId = req.params.id;
+
+//             if (!jobId) {
+//                 return res.status(400).json({ message: "Job id is required", success: false });
+//             }
+
+//             // Check if candidate already applied
+//             const appliedJob = await Application.findOne({ job: jobId, applicant: userId });
+//             if (appliedJob) {
+//                 return res.status(400).json({ message: "You have already applied for this job", success: false });
+//             }
+
+//             // Check if job exists
+//             const job = await Job.findById(jobId)
+//                 .populate({ path: 'company', populate: { path: 'userId' } }); // populate recruiter info
+//             if (!job) {
+//                 return res.status(400).json({ message: "Job not found", success: false });
+//             }
+
+//             // Get candidate info
+//             const candidate = await User.findById(userId);
+//             if (!candidate.profile.resume) {
+//                 return res.status(400).json({ message: "Please upload your resume before applying", success: false });
+//             }
+
+//             // Create application
+//             const application = await Application.create({
+//                 job: jobId,
+//                 applicant: userId,
+//                 isApplied: true,
+//                 isSaved: false,
+//             });
+
+//             // Add application to job
+//             job.applications.push(application._id);
+//             await job.save();
+
+//             // 📧 Send email to Candidate
+//             const candidateMailOptions = {
+//                 from: process.env.EMAIL_USER,
+//                 to: candidate.email,
+//                 subject: `Applied for ${job.title}`,
+//                 html: `
+//                 <h2>Hi ${candidate.name},</h2>
+//                 <p>You have successfully applied for the job <strong>${job.title}</strong> at <strong>${job.company.name}</strong>.</p>
+//                 <p>We’ll notify you about updates from the recruiter.</p>
+//                 <p>Thank you for using JobPortal!</p>
+//             `
+//             };
+
+//             // 📧 Send email to Recruiter
+//             const recruiterMailOptions = {
+//                 from: process.env.EMAIL_USER,
+//                 to: job.company.userId.email, // Recruiter's email
+//                 subject: `New Application for ${job.title}`,
+//                 html: `
+//                 <h2>Hi ${job.company.userId.name},</h2>
+//                 <p>A new candidate <strong>${candidate.name}</strong> has applied for your job post: <strong>${job.title}</strong>.</p>
+//                 <p>Login to your dashboard to view the applicant details.</p>
+//             `
+//             };
+
+//             // Send both emails in parallel
+//             await Promise.all([
+//                 transporter.sendMail(candidateMailOptions),
+//                 transporter.sendMail(recruiterMailOptions),
+//             ]);
+
+//             return res.status(200).json({ message: "Application submitted successfully", success: true });
+//         } catch (error) {
+//             console.error("Error in applyJob:", error);
+//             res.status(500).json({ message: "Something went wrong", success: false });
+//         }
+//     };
+
+// }
+
 export const saveJob = async (req, res) => {
     try {
         const userId = req.id;

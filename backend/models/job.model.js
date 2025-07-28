@@ -1,82 +1,71 @@
 import mongoose from "mongoose";
 
-const jobSchema = new mongoose.Schema({
+const jobSchema = new mongoose.Schema(
+  {
     title: {
-        type: String,
-        required: true
+      type: String,
     },
     description: {
-        type: String,
-        required: true
+      type: String,
     },
-
     requirements: [{ type: String }],
     department: {
-        type: String,
-        required: true
+      type: String,
     },
     category: {
-        type: String,
-
+      type: String,
     },
-     jobType: {
-        type: String,
-        required: true
+    jobType: {
+      type: String,
     },
     salary: {
-        type: String,
-        required: true
+      type: String,
     },
     location: {
-        type: String,
-        required: true
+      type: String,
     },
     jobShifts: {
-        type: String,
-        required: true
+      type: String,
     },
-      experience: {
-        type: Number,
-        required: true,
-    },   
+    experience: {
+      type: Number,
+    },
     education: {
-        type: String,
-        required: true
+      type: String,
     },
     englishLevel: {
-        type: String,
-        required: true
+      type: String,
     },
     gender: {
-        type: String,
-        required: true
+      type: String,
     },
-     positions: {
-        type: Number,
-        required: true
+    positions: {
+      type: Number,
     },
     visible: {
-        type: Boolean,
-        default: true
+      type: Boolean,
+      default: true,
     },
     company: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Company',
-        required: true
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Company",
+      required: true,
     },
     created_by: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
-    applications: [{
+    applications: [
+      {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Application',
-    }],
+        ref: "Application",
+      },
+    ],
+  },
+  {
+    timestamps: true,
+  }
+);
 
-},
-    {
-        timestamps: true
-    })
-
-export const Job = mongoose.model('Job', jobSchema)
+export const Job = mongoose.model("Job", jobSchema);
