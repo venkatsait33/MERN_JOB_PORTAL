@@ -17,7 +17,7 @@ const Jobs = () => {
     }, [allJobs, sortOrder]);
 
     return (
-        <div className='p-2 mx-auto max-w-7xl max-sm:p-2'>
+        <div className='md:mt-20 mx-auto max-w-7xl max-sm:p-2'>
 
             <div className='gap-4 md:flex max-sm:flex-col'>
                 {/* Filter sidebar */}
@@ -44,7 +44,7 @@ const Jobs = () => {
                     {sortedJobs.length <= 0 ? (
                         <span>Job not found</span>
                     ) : (
-                        <div className='h-[88vh] no-scrollbar overflow-y-auto'>
+                        <div className='md:h-[88vh] no-scrollbar overflow-y-auto'>
                             <div className='grid grid-cols-1 gap-4 max-sm:grid-cols-1 '>
                                 {sortedJobs.map((job) => (
                                     <div key={job._id}>

@@ -1,13 +1,10 @@
 import { useState } from 'react';
-import { FaBookmark } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
 import { DaysCountFunction } from '../../utils/DaysCountFunction';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { APPLICATION_API_END_POINT } from '../../utils/axiosApiConstants';
-import { MdOutlineHomeWork } from "react-icons/md";
-import { CiLocationOn } from "react-icons/ci";
-import { FaUserLarge, FaIndianRupeeSign } from "react-icons/fa6";
+import { CiLocationOn, FaBookmark, FaIndianRupeeSign, FaUserLarge, MdOutlineHomeWork } from '../../utils/icons'
 
 const Job = ({ job }) => {
     const navigate = useNavigate();

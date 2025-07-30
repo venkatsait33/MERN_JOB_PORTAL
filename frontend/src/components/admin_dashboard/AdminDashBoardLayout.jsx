@@ -56,7 +56,7 @@ const AdminDashBoardLayout = () => {
     return (
         <div className='flex w-full h-auto'>
             <div className='p-4 md:w-[300px] '>
-                <div className="absolute z-20 top-20 left-1 md:hidden">
+                <div className="absolute z-20 top-3 left-1 md:hidden">
                     <button
                         className="p-2 text-white bg-blue-600 rounded"
                         onClick={() => setIsSidebarOpen(!isSidebarOpen)}

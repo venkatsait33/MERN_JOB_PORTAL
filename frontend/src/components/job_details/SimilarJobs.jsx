@@ -1,8 +1,4 @@
-import React from 'react'
-import { CiLocationOn } from 'react-icons/ci';
-import { FaIndianRupeeSign } from 'react-icons/fa6';
-import { MdKeyboardArrowRight, MdOutlineHomeWork } from 'react-icons/md';
-import { PiHandbagSimpleBold } from 'react-icons/pi';
+import { CiLocationOn, FaIndianRupeeSign, MdKeyboardArrowRight, MdOutlineHomeWork, PiHandbagSimpleBold } from '../../utils/icons'
 import { Link } from 'react-router-dom'
 
 const SimilarJobs = ({ singleJob, allJobs }) => {

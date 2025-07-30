@@ -7,7 +7,7 @@ const LatestJobs = () => {
     const {allJobs} = useSelector(store=>store.job);
    
     return (
-        <div className='p-4 mx-auto my-10 md:max-w-7xl'>
+        <div className=' mx-auto my-4 md:max-w-7xl'>
             <h1 className='text-4xl font-bold'><span className='text-[#6A38C2]'>Latest & Top </span> Job Openings</h1>
             <div className='grid gap-4 my-5 md:grid-cols-3'>
                 {

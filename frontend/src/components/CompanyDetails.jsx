@@ -2,11 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react'
 import { COMPANY_API_END_POINT } from '../utils/axiosApiConstants';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { MdOutlineHomeWork } from 'react-icons/md';
-import { CiLocationOn } from 'react-icons/ci';
-import { FaIndianRupeeSign } from 'react-icons/fa6';
-import { BsBrowserChrome } from "react-icons/bs";
-import { IoArrowBack } from 'react-icons/io5';
+import { BsBrowserChrome, CiLocationOn, FaIndianRupeeSign, IoArrowBack, MdOutlineHomeWork } from '../utils/icons'
 
 const CompanyDetails = () => {
     const [company, setCompany] = useState({});

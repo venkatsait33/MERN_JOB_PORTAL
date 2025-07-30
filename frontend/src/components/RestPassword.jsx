@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import  { useRef, useState } from 'react'
 import { MdEmail, MdPassword } from 'react-icons/md';
 import OtpVerification from './OtpVerification';
 import axios from 'axios';

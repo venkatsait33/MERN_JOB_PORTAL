@@ -1,23 +1,26 @@
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
-import axios from 'axios'
 import { APPLICATION_API_END_POINT, JOB_API_END_POINT } from '../../utils/axiosApiConstants.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSingleJob } from '../../redux/jobSlice.js'
 import { toast } from 'react-toastify';
-import { IoArrowBack } from "react-icons/io5";
 import { DaysCountFunction } from '../../utils/DaysCountFunction.jsx'
-import { MdOutlineHomeWork } from "react-icons/md";
-import { CiLocationOn } from 'react-icons/ci'
-import { FaIndianRupeeSign, FaRegBuilding, FaUserLarge } from 'react-icons/fa6'
-import { LuUsersRound } from "react-icons/lu";
-import { FaGraduationCap, FaRegClock } from "react-icons/fa";
-import { RiEnglishInput } from "react-icons/ri";
-import { PiHandbagSimpleBold } from "react-icons/pi";
-import { TbCategoryPlus } from "react-icons/tb";
-import { CgDarkMode, CgHome } from "react-icons/cg";
 import MDEditor from '@uiw/react-md-editor'
 import SimilarJobs from './SimilarJobs.jsx'
+import { MdOutlineHomeWork,
+    CiLocationOn,
+    FaIndianRupeeSign,
+    FaRegBuilding,
+    FaUserLarge,
+    LuUsersRound,
+    FaGraduationCap,
+    FaRegClock,
+    RiEnglishInput,
+    PiHandbagSimpleBold,
+    TbCategoryPlus,
+    CgDarkMode,
+    CgHome} from '../../utils/icons.js'
 
 const JobDescription = () => {
     const { user } = useSelector(store => store.auth)
@@ -93,7 +96,7 @@ const JobDescription = () => {
                     </ul>
                 </div>
             </div>
-            <div className='p-10 border shadow-xl md:h-48 bg-base-200 rounded-2xl'>
+            <div className='p-10 border shadow-sm md:h-48 bg-base-100 rounded-2xl'>
                 <div className='flex items-center justify-between md:gap-10 max-sm:gap-5 max-sm:flex-col'>
                     <div className='flex items-center gap-10 max-sm:flex-col lg:flex-row'>
                         <div className='rounded-full '>
@@ -124,7 +127,7 @@ const JobDescription = () => {
                                 {loading ?
                                     <button className=''><span className="loading loading-spinner loading-lg"></span></button>
                                     :
-                                    <button type='submit' className=""> {isApplied ? 'Already Applied' : 'Apply Now'}</button>}
+                                    <button type='submit' className="text-base text-white  "> {isApplied ? 'Already Applied' : 'Apply Now'}</button>}
                             </button>
                         }
                         <p className='text-sm text-gray-500'>Posted  {DaysCountFunction(singleJob?.createdAt) === 0 ? "Today" : `${DaysCountFunction(singleJob?.createdAt)} days ago`}</p>

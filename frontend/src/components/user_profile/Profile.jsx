@@ -1,10 +1,10 @@
-import { TiTick } from "react-icons/ti";
-import { FaPen } from 'react-icons/fa6'
-import { CiMail } from "react-icons/ci";
-import { IoIosContact } from 'react-icons/io';
 import { useState } from 'react';
 import UpdateProfile from './UpdateProfile';
 import { useSelector } from 'react-redux';
+import { TiTick,
+    FaPen,
+    CiMail,
+    IoIosContact} from '../../utils/icons'
 
 const Profile = () => {
     const [open, setOpen] = useState(false)

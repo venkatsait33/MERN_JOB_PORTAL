@@ -2,14 +2,37 @@ import './App.css'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import ScrollToTop from './utils/ScroolToTop'
 import { AboutUs, AdminDashBoardLayout, AdminJobPosts, AdminLogin, AdminRegister, Applicants, Browse, Companies, CompanyDetails, CompanyJobs, CompanySetup, EmailVerification, Footer, HomePage, JobApplicants, JobDescription, JobHistory, JobPost, Jobs, NavBar, PageNotFound, Privacy, Profile, ProtectedRoute, RecruiterDashboardLayout, RestPassword, TermsAndServices, UpdateJobPost } from './components'
+import { MdOutlineKeyboardArrowUp } from 'react-icons/md'
+import { useEffect, useState } from 'react'
 
 function App() {
   const navigate = useNavigate()
+  const [showScrollTopButton, setShowScrollTopButton] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 200) {
+        setShowScrollTopButton(true);
+      } else {
+        setShowScrollTopButton(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Smooth scroll effect
+    });
+  };
 
   return (
     <>
       <ScrollToTop />
-      <div className='max-h-screen mx-auto max-w-screen-2xl no-scrollbar'>
+      <div className='max-h-screen  mx-auto max-w-screen-2xl no-scrollbar'>
         <NavBar />
         <div className='relative mt-14 '>
           <Routes>
@@ -63,6 +86,14 @@ function App() {
             <Route path='*' element={<PageNotFound />} />
           </Routes>
         </div>
+        {showScrollTopButton && (
+          <button
+            onClick={scrollToTop}
+            className="fixed z-50 p-2 text-base rounded bottom-8 right-8   "
+          >
+            <MdOutlineKeyboardArrowUp className="text-2xl btn btn-circle border-[#1F8268] border-2 " />
+          </button>
+        )}
         <Footer />
       </div>
     </>
