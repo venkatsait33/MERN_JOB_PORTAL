@@ -54,29 +54,42 @@ const AdminDashBoardLayout = () => {
     };
 
     return (
-        <div className='flex w-full h-auto'>
+        <div className='flex w-full h-auto '>
             <div className='p-4 md:w-[300px] '>
-                <div className="absolute z-20 top-20 left-1 md:hidden">
-                    <button
-                        className="p-2 text-white bg-blue-600 rounded"
-                        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                    >
-                        {isSidebarOpen ? <IoClose size={24} /> : <FaBars size={24} />}
-                    </button>
+                <div >
+                    {
+                        isSidebarOpen ? <>
+                            <div className='absolute z-50 transition-transform duration-300 transform top-4 left-38 md:hidden'>
+                                <button
+
+                                    className="p-2 text-white bg-blue-600 rounded"
+                                    onClick={() => setIsSidebarOpen(false)}
+                                >
+                                    <IoClose size={24} />
+                                </button>
+                            </div></> : <><div className='absolute z-50 top-4 left-2 md:hidden'>
+                                <button
+                                    className="p-2 text-white bg-blue-600 rounded"
+                                    onClick={() => setIsSidebarOpen(true)}
+                                >
+                                    <FaBars size={24} />
+                                </button>
+                            </div></>
+                    }
                 </div>
 
                 {/* Sidebar */}
                 <div
-                    className={`fixed z-10 max-sm:top-16 left-0 h-full max-sm:bg-base-300 max-sm:w-[200px] shadow-md transform transition-transform duration-300 ease-in-out
+                    className={`fixed z-10 max-sm:top-16 left-0  max-sm:bg-base-300 p-4 h-full max-sm:w-[200px] shadow-md transform transition-transform duration-300 ease-in-out
                 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
-                md:relative md:translate-x-0 md:w-full `}
+                 md:translate-x-0 w-[15%] md:ml-4 md:mt-4   `}
                 >
                     <AdminSideBar activeMenu={activeMenu} setActiveMenu={setActiveMenu} setIsSidebarOpen={setIsSidebarOpen} />
                 </div>
             </div>
-            <div className='w-full p-4 '>
+            <div className='relative w-full p-4 '>
                 {loading ? (
-                    <div className="flex items-center justify-center h-full">
+                    <div className="flex items-center justify-center h-[50vh]">
                         <span className="loading loading-spinner loading-xl"></span>
                     </div>
                 ) : (

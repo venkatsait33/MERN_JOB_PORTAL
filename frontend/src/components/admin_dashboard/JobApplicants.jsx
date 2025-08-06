@@ -44,74 +44,81 @@ const JobApplicants = () => {
     fetchData();
   }, [id]);
 
-  if (!jobTitle) {
-    return <div className="p-4 text-center">Job not found.</div>;
-  }
+
 
   return (
-    <>
+    <div >
       {loading ? (
-        <div className="flex items-center justify-center h-full">
+        <div className="flex items-center justify-center h-full mx-auto mt-20">
           <span className="loading loading-spinner loading-xl"></span>
         </div>
       ) : (
-        <div className="max-w-4xl md:h-[55vh] p-4 mx-auto">
-          <div className="mt-4">
-            <button
-              onClick={() => navigate(-1)}
-              className="text-xl btn btn-circle btn-sm"
-            >
-              <IoArrowBack />
-            </button>
-          </div>
-          <h1 className="mb-4 text-xl font-bold text-center">
-            {jobTitle} - Applicants
-          </h1>
+        <>
+          <div>
+            {
+              !jobTitle && <div className="p-4 text-center">Job not found.</div>
+            }
 
-          {applicants.length === 0 ? (
-            <p className="text-center">No applicants for this job.</p>
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="table w-full rounded-lg bg-base-100">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
-                    <th>Resume</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {applicants.map((app, index) => (
-                    <tr key={index}>
-                      <td>{app?.applicant?.fullname || "N/A"}</td>
-                      <td>{app?.applicant?.email || "N/A"}</td>
-                      <td>{app?.applicant?.phoneNumber || "N/A"}</td>
-                      <td>
-                        {app?.applicant?.profile?.resume ? (
-                          <a
-                            href={app.applicant.profile.resume}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="link"
-                          >
-                            View Resume
-                          </a>
-                        ) : (
-                          "N/A"
-                        )}
-                      </td>
-                      <td>{app?.status || "N/A"}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+          </div>
+
+          <div className="max-w-4xl md:h-[55vh] p-4 mx-auto">
+            <div className="mt-4">
+              <button
+                onClick={() => navigate(-1)}
+                className="text-xl btn btn-circle btn-sm"
+              >
+                <IoArrowBack />
+              </button>
             </div>
-          )}
-        </div>
+            <h1 className="mb-4 text-xl font-bold text-center">
+              {jobTitle} - Applicants
+            </h1>
+
+            {applicants.length === 0 ? (
+              <p className="text-center">No applicants for this job.</p>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="table w-full rounded-lg bg-base-100">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Phone Number</th>
+                      <th>Resume</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {applicants.map((app, index) => (
+                      <tr key={index}>
+                        <td>{app?.applicant?.fullname || "N/A"}</td>
+                        <td>{app?.applicant?.email || "N/A"}</td>
+                        <td>{app?.applicant?.phoneNumber || "N/A"}</td>
+                        <td>
+                          {app?.applicant?.profile?.resume ? (
+                            <a
+                              href={app.applicant.profile.resume}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="link"
+                            >
+                              View Resume
+                            </a>
+                          ) : (
+                            "N/A"
+                          )}
+                        </td>
+                        <td>{app?.status || "N/A"}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        </>
       )}
-    </>
+    </div>
   );
 };
 

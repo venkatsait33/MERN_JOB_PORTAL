@@ -73,7 +73,7 @@ const CompanyJobs = () => {
                       <tr key={job._id}>
                         <td>{job.title}</td>
                         <td>{job.location}</td>
-                        <td>{job.salary}</td>
+                        <td>{job.salary} lpa</td>
                         <td>
                           <Link
                             to={`/admin/dashboard/job/${job._id}`}

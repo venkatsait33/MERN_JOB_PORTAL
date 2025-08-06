@@ -24,7 +24,7 @@ const AdminJobsDataDashboard = ({ dashboardData }) => {
                                         <td>{job?.company?.name}</td>
                                         <td>{job.title}</td>
                                         <td>{job.location}</td>
-                                        <td>{job.salary}</td>
+                                        <td>{job.salary} LPA</td>
                                         <td>
                                             <Link
                                                 to={`/admin/dashboard/job/${job._id}`}
