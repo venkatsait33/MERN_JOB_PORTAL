@@ -82,7 +82,7 @@ const JobPost = () => {
     return (
         <div >
             <div className='max-w-4xl mx-auto my-10'>
-                <PostForm submitHandler={submitHandler} changeEventHandler={changeEventHandler} input={input} companies={companies} loading={loading} handleSelectHandler={handleSelectHandler} handleDescriptionChange={handleDescriptionChange} name="Job Post" button='Post Job' />
+                <PostForm submitHandler={submitHandler} navigate={navigate} changeEventHandler={changeEventHandler} input={input} companies={companies} loading={loading} handleSelectHandler={handleSelectHandler} handleDescriptionChange={handleDescriptionChange} name="Job Post" button='Post Job' />
             </div>
         </div>
     )

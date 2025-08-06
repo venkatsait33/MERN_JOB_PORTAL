@@ -8,7 +8,8 @@ import { toast } from 'react-toastify';
 import { DaysCountFunction } from '../../utils/DaysCountFunction.jsx'
 import MDEditor from '@uiw/react-md-editor'
 import SimilarJobs from './SimilarJobs.jsx'
-import { MdOutlineHomeWork,
+import {
+    MdOutlineHomeWork,
     CiLocationOn,
     FaIndianRupeeSign,
     FaRegBuilding,
@@ -20,7 +21,8 @@ import { MdOutlineHomeWork,
     PiHandbagSimpleBold,
     TbCategoryPlus,
     CgDarkMode,
-    CgHome} from '../../utils/icons.js'
+    CgHome
+} from '../../utils/icons.js'
 
 const JobDescription = () => {
     const { user } = useSelector(store => store.auth)
@@ -80,8 +82,6 @@ const JobDescription = () => {
     }, [jobId, dispatch, user?._id]);
 
 
-
-
     return (
         <div className='p-8 mx-auto lg:max-w-7xl'>
             <div className='mb-4 '>
@@ -127,7 +127,7 @@ const JobDescription = () => {
                                 {loading ?
                                     <button className=''><span className="loading loading-spinner loading-lg"></span></button>
                                     :
-                                    <button type='submit' className="text-base text-white  "> {isApplied ? 'Already Applied' : 'Apply Now'}</button>}
+                                    <button type='submit' className="text-base text-white "> {isApplied ? 'Already Applied' : 'Apply Now'}</button>}
                             </button>
                         }
                         <p className='text-sm text-gray-500'>Posted  {DaysCountFunction(singleJob?.createdAt) === 0 ? "Today" : `${DaysCountFunction(singleJob?.createdAt)} days ago`}</p>
@@ -147,12 +147,10 @@ const JobDescription = () => {
 
                             <p className='flex items-center gap-2 my-1 '><FaIndianRupeeSign />Salary: <span className='pl-4 font-semibold'> {singleJob?.salary || "N/A"}</span></p>
                         </div>
-                        <div tabIndex={0} className=" collapse collapse-arrow">
-                            <input type="checkbox" />
-                            <div className="font-semibold collapse-title">Description</div>
-                            <div className=" max-sm:mb-4 collapse-content">
-                                <MDEditor.Markdown source={singleJob?.description} style={{ whiteSpace: 'pre-wrap', backgroundColor: 'transparent', color: 'gray' }} />
-                            </div>
+                        <div>
+                            <div className="mb-2 font-semibold ">Description</div>
+                           
+                            <MDEditor.Markdown source={singleJob?.description} style={{ whiteSpace: 'pre-wrap', backgroundColor: '#757777', padding: '5px', marginLeft: "5px", borderRadius: "10px", color: 'white' }} />
                         </div>
                         <div className='mt-4 max-sm:mb-4'>
                             <p className='text-xl font-semibold text-center'>Job Role</p>

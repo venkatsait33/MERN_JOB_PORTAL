@@ -20,7 +20,7 @@ const PostForm = ({
   loading,
   name,
   button,
-  naviagte,
+  navigate,
 }) => {
   // const callback = useCallback()
   return (
@@ -346,7 +346,7 @@ const PostForm = ({
           />
         </div>
 
-        <div className="flex items-center justify-between mx-auto gap-4">
+        <div className="flex items-center justify-between gap-4 mx-auto">
           {loading ? (
             <button className="mt-4 btn btn-neutral">
               <span className="loading loading-spinner loading-lg"></span>

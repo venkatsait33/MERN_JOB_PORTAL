@@ -76,117 +76,110 @@ const UpdateProfile = ({ open, setOpen }) => {
             console.log(error);
         } finally {
             setLoading(false);
-            setOpen(false);
+            document.getElementById('updateProfileForm').closest()
         }
     };
 
     return (
         <div className=''>
-            {
-                open && <div className="fixed inset-0 my-10 z-50 flex mt-10 items-center justify-center bg-base-100 mx-auto max-md:w-[80%] lg:w-[45%] card">
-                    <div className="w-full max-w-xl p-4 card-body">
-                        <div className="flex items-center justify-between mb-4">
-                            <h2 className="text-xl font-semibold">Edit Details</h2>
-                            <button
-                                onClick={() => setOpen(false)}
-                                className="text-center md:text-2xl btn btn-circle btn-ghost"
-                            >
-                                &times;
-                            </button>
-                        </div>
-
-                        <form onSubmit={handleSubmit} className="space-y-4 overflow-y-scroll no-scrollbar">
-                            <div>
-                                <label className="">
-                                    Name
-                                </label>
-                                <input
-                                    type="text"
-                                    name="fullname"
-                                    value={input.fullname}
-                                    id='fullname'
-                                    onChange={changeEventHandler}
-                                    className="w-full max-w-xl input "
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="">
-                                    Email
-                                </label>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value={input.email}
-                                    onChange={changeEventHandler}
-                                    id='email'
-                                    className="w-full max-w-xl input"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="">
-                                    Number
-                                </label>
-                                <input
-                                    type="number"
-                                    name="phoneNumber"
-                                    value={input.phoneNumber}
-                                    onChange={changeEventHandler}
-                                    id='number'
-                                    className="w-full max-w-xl input"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="">
-                                    Bio
-                                </label>
-                                <input
-                                    type="text"
-                                    name="bio"
-                                    id='bio'
-                                    onChange={changeEventHandler}
-                                    value={input.bio}
-                                    className="w-full max-w-xl input"
-                                    required
-                                />
-                            </div><div>
-                                <label className="">
-                                    Skills
-                                </label>
-                                <input
-                                    type="text"
-                                    name="skills"
-                                    id='skills'
-                                    onChange={changeEventHandler}
-                                    value={input.skills}
-                                    className="w-full max-w-xl input"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="">
-                                    Resume
-                                </label>
-                                <input
-                                    type="file"
-                                    name="file"
-                                    id='file'
-                                    onChange={changeFileHandler}
-                                    accept='application/pdf'
-                                    className="w-full max-w-xl input"
-
-                                />
-                            </div>
-                            {
-                                loading ? <button className='w-full btn-outline'><span className="loading loading-spinner loading-xl"></span></button> : <button className='w-full text-xl btn btn-primary' type='submit'>save</button>
-                            }
-
-                        </form>
+            <div className="items-center justify-center mx-auto max-md:w-[80%] card">
+                <div className="w-full max-w-4xl p-4 card-body">
+                    <div className="flex items-center justify-between mb-4">
+                        <h2 className="text-xl font-semibold">Edit Details</h2>
                     </div>
+
+                    <form onSubmit={handleSubmit} className="space-y-4 overflow-y-scroll no-scrollbar">
+                        <div>
+                            <label className="">
+                                Name:
+                            </label>
+                            <input
+                                type="text"
+                                name="fullname"
+                                value={input.fullname}
+                                id='fullname'
+                                onChange={changeEventHandler}
+                                className="w-full max-w-xl input "
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label className="">
+                                Email:
+                            </label>
+                            <input
+                                type="email"
+                                name="email"
+                                value={input.email}
+                                onChange={changeEventHandler}
+                                id='email'
+                                className="w-full max-w-xl input"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label className="">
+                                Number:
+                            </label>
+                            <input
+                                type="number"
+                                name="phoneNumber"
+                                value={input.phoneNumber}
+                                onChange={changeEventHandler}
+                                id='number'
+                                className="w-full max-w-xl input"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label className="">
+                                Bio:
+                            </label>
+                            <input
+                                type="text"
+                                name="bio"
+                                id='bio'
+                                onChange={changeEventHandler}
+                                value={input.bio}
+                                className="w-full max-w-xl input"
+                                required
+                            />
+                        </div><div>
+                            <label className="">
+                                Skills:
+                            </label>
+                            <input
+                                type="text"
+                                name="skills"
+                                id='skills'
+                                onChange={changeEventHandler}
+                                value={input.skills}
+                                className="w-full max-w-xl input"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label className="">
+                                Resume:
+                            </label>
+                            <input
+                                type="file"
+                                name="file"
+                                id='file'
+                                onChange={changeFileHandler}
+                                accept='application/pdf'
+                                className="w-full max-w-xl input"
+
+                            />
+                        </div>
+                        {
+                            loading ? <button className='w-full btn-outline'><span className="loading loading-spinner loading-xl"></span></button> : <button className='w-full text-xl btn btn-primary' type='submit'>save</button>
+                        }
+
+                    </form>
                 </div>
-            }
+            </div>
+
         </div>
     )
 }
