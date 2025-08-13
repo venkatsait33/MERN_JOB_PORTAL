@@ -44,9 +44,11 @@ export const updateJob = async (req, res) => {
         const { title, description, location, requirements, salary, jobType, positions, experience, category } = req.body
 
         const job = await Job.findById(jobId);
+        
         if (!job) {
             return res.status(404).json({ message: "Job not found", success: false })
         }
+        
         if (job.created_by.toString() !== recruiterId) {
             return res.status(403).json({
                 message: "Unauthorized", success: false
@@ -63,12 +65,9 @@ export const updateJob = async (req, res) => {
         job.experience = experience || job.experience;
         job.category = category || job.category;
 
-
         await job.save();
 
         return res.status(200).json({ message: "Job updated successfully", success: true, job })
-
-
 
     } catch (error) {
         console.log(error);
@@ -98,7 +97,7 @@ export const getAllJobs = async (req, res) => {
             return res.status(404).json({ message: "No jobs found", success: false });
         }
 
-        // ✅ Fetch all application records by this user for the returned jobs
+        //  Fetch all application records by this user for the returned jobs
         const jobIds = jobs.map(job => job._id);
         const applications = await Application.find({
             job: { $in: jobIds },
@@ -114,7 +113,7 @@ export const getAllJobs = async (req, res) => {
             };
         });
 
-        // ✅ Add isSaved and isApplied to each job object
+        //  Add isSaved and isApplied to each job object
         const jobsWithFlags = jobs.map(job => {
             const jobObj = job.toObject();
             const flags = appMap[job._id.toString()] || { isSaved: false, isApplied: false };

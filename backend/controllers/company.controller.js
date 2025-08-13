@@ -80,7 +80,7 @@ export const getCompanyById = async (req, res) => {
             .select("-__v") // exclude __v field
             .lean();
 
-        // ✅ Attach jobs to company object
+        // Attach jobs to company object
         company.jobs = jobs;
 
         return res.status(200).json({
@@ -96,7 +96,6 @@ export const updateCompany = async (req, res) => {
     try {
 
         const { name, description, website, location } = req.body;
-
 
         const file = req.file;
         // cloudinary for upload logo
@@ -135,14 +134,13 @@ export const deleteCompany = async (req, res) => {
     try {
         const companyId = req.params.id;
 
-        // ✅ Validate ObjectId
+        // Validate ObjectId
         if (!mongoose.Types.ObjectId.isValid(companyId)) {
             return res.status(400).json({
                 success: false,
                 message: "Invalid company ID"
             });
         }
-
 
         const company = await Company.findById(companyId);
         if (!company) {
@@ -153,13 +151,13 @@ export const deleteCompany = async (req, res) => {
         }
         const jobs = await Job.find({ company: companyId }).lean();
         const jobIds = jobs.map(job => job._id);
-        // ✅ Delete all applications related to these jobs
+        //  Delete all applications related to these jobs
         const deletedApplications = await Application.deleteMany({ job: { $in: jobIds } });
 
-        // ✅ Delete all jobs related to this company
+        //  Delete all jobs related to this company
         const deletedJobs = await Job.deleteMany({ company: companyId });
 
-        // ✅ Finally delete the company
+        //  Finally delete the company
         await Company.findByIdAndDelete(companyId);
 
         return res.status(200).json({

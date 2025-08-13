@@ -15,6 +15,7 @@ const AdminJobsDataDashboard = ({ dashboardData }) => {
                                     <th>Title</th>
                                     <th>Location</th>
                                     <th>Salary</th>
+                                    <th>applications</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -25,6 +26,7 @@ const AdminJobsDataDashboard = ({ dashboardData }) => {
                                         <td>{job.title}</td>
                                         <td>{job.location}</td>
                                         <td>{job.salary} LPA</td>
+                                        <td>{job.applications.length}</td>
                                         <td>
                                             <Link
                                                 to={`/admin/dashboard/job/${job._id}`}

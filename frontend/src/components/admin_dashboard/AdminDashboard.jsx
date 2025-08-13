@@ -16,7 +16,7 @@ const AdminDashboard = ({ dashboardData }) => {
     const latestCompanies = getLatestItems(companies);
     const latestJobs = getLatestItems(jobs);
     return (
-        <div className='pl-2 '>
+        <div className='pl-2 mt-4 '>
             <h1 className='text-xl'>Welcome Admin</h1>
 
             <div className='flex items-center justify-between p-4 max-sm:flex-col'>

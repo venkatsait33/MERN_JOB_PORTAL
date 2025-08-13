@@ -251,7 +251,7 @@ export const getAppliedJobs = async (req, res) => {
     try {
         const userId = req.id;
         const application = await Application.find({ applicant: userId }).sort({ createdAt: -1 }).populate({
-            path: 'job', // we are populating the data from the job model and company model
+            path: 'job', //here we are populating the data from the job model and company model
             option: { sort: { createdAt: -1 } },
             populate: {
                 path: "company",

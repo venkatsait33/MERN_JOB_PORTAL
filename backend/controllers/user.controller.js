@@ -213,7 +213,7 @@ export const logout = async (req, res) => {
 export const updateProfile = async (req, res) => {
     try {
         const { fullname, email, phoneNumber, bio, skills } = req.body;
-        const file = req.file; // ✅ Corrected destructuring
+        const file = req.file; 
 
         let skillsArray;
         if (skills) {
