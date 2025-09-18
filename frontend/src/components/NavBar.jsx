@@ -20,6 +20,8 @@ const NavBar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    console.log(user);
+
     const handleClose = () => {
         const modal = document.getElementById("login_modal");
         // Close the modal
@@ -211,8 +213,8 @@ const NavBar = () => {
                                                 <img
                                                     alt=""
                                                     src={
-                                                        "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" ||
-                                                        user?.profile?.profilePhoto
+
+                                                        user?.profile?.profilePhoto || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                                                     }
                                                     className="rounded-full"
                                                 />

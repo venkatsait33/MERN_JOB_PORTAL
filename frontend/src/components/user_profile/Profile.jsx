@@ -59,11 +59,11 @@ const Profile = () => {
                                 <span>{user?.email}</span>
                                 <div className={`btn btn-circle btn-xs ${user?.isAccountVerified ? "bg-green-500" : "bg-red-500"}`}>
                                     {user?.isAccountVerified ? <div>
-                                        <div className="tooltip" data-tip="Account Verified">
+                                        <div className="flex justify-center tooltip " data-tip="Account Verified">
                                             <TiTick className="text-2xl font-bold text-center" />
                                         </div>
 
-                                    </div> : <div className="tooltip" data-tip="Account Not Verified">
+                                    </div> : <div className="flex justify-center tooltip" data-tip="Account Not Verified">
                                         <TiTick className="text-2xl font-bold text-center" />
                                     </div>}
                                 </div>

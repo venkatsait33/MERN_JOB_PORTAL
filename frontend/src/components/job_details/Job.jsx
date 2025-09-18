@@ -81,7 +81,7 @@ const Job = ({ job }) => {
                 <div className='flex items-center justify-between gap-2 my-2 max-sm:grid max-sm:grid-cols-3 md:flex'>
                     <div className="btn btn-sm btn-primary"><FaUserLarge />{job?.positions} positions</div>
                     <div className="btn btn-sm btn-secondary">{job?.jobType}</div>
-                    <div className="btn btn-sm"><FaIndianRupeeSign/>{job?.salary}</div>
+                    <div className="btn btn-sm"><FaIndianRupeeSign/>{job?.salary} LPA</div>
                 </div>
 
                 <div className='flex items-center justify-between'>

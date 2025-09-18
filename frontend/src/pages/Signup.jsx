@@ -60,8 +60,19 @@ const Signup = () => {
             }
             );
             if (res.data.success) {
-                navigate('/login');
+                navigate('/');
+                document.getElementById('signup_model').close();
                 toast.success(res.data.message);
+                setInput({
+                    ...input,
+                    fullname: '',
+                    email: '',
+                    phoneNumber: '',
+                    password: '',
+                    role: '',
+                    file: '',
+                });
+                setImage(" ")
             }
         } catch (error) {
             toast.error(error.response.data.message);

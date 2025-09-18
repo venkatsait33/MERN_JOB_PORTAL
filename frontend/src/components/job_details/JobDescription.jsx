@@ -150,7 +150,7 @@ const JobDescription = () => {
                         <div>
                             <div className="mb-2 font-semibold ">Description</div>
                            
-                            <MDEditor.Markdown source={singleJob?.description} style={{ whiteSpace: 'pre-wrap', backgroundColor: '#757777', padding: '5px', marginLeft: "5px", borderRadius: "10px", color: 'white' }} />
+                            <MDEditor.Markdown source={singleJob?.description} style={{ whiteSpace: 'pre-wrap',padding: '5px', marginLeft: "5px", borderRadius: "10px", color: 'white' }} />
                         </div>
                         <div className='mt-4 max-sm:mb-4'>
                             <p className='text-xl font-semibold text-center'>Job Role</p>
