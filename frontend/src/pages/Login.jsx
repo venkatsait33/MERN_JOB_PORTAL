@@ -34,11 +34,11 @@ const Login = () => {
             const response = await axios.post(`${USER_API_END_POINT}/firebase-login`, { token });
             toast.success(response.data.message);
             dispatch(setUser(response.data.user))
-            console.log(response.data.user)
+            // console.log(response.data.user)
             const redirectPath = localStorage.getItem("redirectAfterLogin") || "/";
             localStorage.removeItem("redirectAfterLogin"); // Clean up
             navigate(redirectPath);
-            console.log(response.data); // User from MongoDB
+            // console.log(response.data); // User from MongoDB
         } catch (error) {
             console.error("Firebase login error:", error);
         }

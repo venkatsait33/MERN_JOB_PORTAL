@@ -50,7 +50,7 @@ const JobApplicants = () => {
     <div >
       {loading ? (
         <div className="flex items-center justify-center h-full mx-auto mt-20">
-          <span className="loading loading-spinner loading-xl"></span>
+          <span className="flex items-center justify-center h-full mx-auto mt-20 loading loading-spinner loading-xl"></span>
         </div>
       ) : (
         <>

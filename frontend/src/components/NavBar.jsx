@@ -19,9 +19,6 @@ const NavBar = () => {
     const { user } = useSelector((store) => store.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    console.log(user);
-
     const handleClose = () => {
         const modal = document.getElementById("login_modal");
         // Close the modal
