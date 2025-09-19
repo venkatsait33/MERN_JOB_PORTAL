@@ -8,8 +8,6 @@ import {
   PopularSearch,
   Reviews,
 } from "../components/home_page";
-import { useEffect, useState } from "react";
-import { MdOutlineKeyboardArrowUp } from "react-icons/md";
 
 const HomePage = () => {
   
