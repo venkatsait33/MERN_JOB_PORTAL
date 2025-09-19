@@ -140,7 +140,9 @@ const Login = () => {
                                 </div>
 
                                 <Link to='/reset-password' className='mt-2'>
-                                    <span className='link link-primary'>Forget Password?</span>
+                                    <span className='link link-primary' onClick={() => {
+                                        document.getElementById('login_modal').close()
+                                    }}>Forget Password?</span>
                                 </Link>
 
                             </div>

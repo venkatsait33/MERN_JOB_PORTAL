@@ -1,4 +1,4 @@
-import  { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { MdEmail, MdPassword } from 'react-icons/md';
 import OtpVerification from './OtpVerification';
 import axios from 'axios';
@@ -54,7 +54,7 @@ const RestPassword = () => {
       })
       if (res.data.success) {
         toast.success(res.data.message)
-        navigate('/login')
+        navigate('/')
       }
     } catch (error) {
       console.log(error);
