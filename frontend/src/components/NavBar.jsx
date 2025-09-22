@@ -132,6 +132,11 @@ const NavBar = () => {
                                             Browse
                                         </Link>
                                     </li>
+                                    <li>
+                                        <a href="https://ai-resume-maker-cv.vercel.app/" target="_blank" className="text-lg font-semibold">
+                                            AI-Resume
+                                        </a>
+                                    </li>
                                 </>
                             )}
                         </ul>
@@ -176,6 +181,11 @@ const NavBar = () => {
                                     <Link to="/browse" className="text-lg font-semibold">
                                         Browse
                                     </Link>
+                                </li>
+                                <li>
+                                    <a href="https://ai-resume-maker-cv.vercel.app/" target="_blank" className="text-lg font-semibold">
+                                        AI-Resume
+                                    </a>
                                 </li>
                             </>
                         )}
