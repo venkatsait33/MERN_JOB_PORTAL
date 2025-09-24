@@ -78,8 +78,8 @@ const CompanySetup = () => {
 
 
     return (
-        <div className='max-w-5xl mx-auto my-10'>
-            <div className='p-6 mx-auto border border-gray-300 w-[80%] rounded-lg'>
+        <div className='flex justify-center max-w-5xl p-2 mx-auto '>
+            <div className='p-6 mx-auto border border-gray-300 w-[80%] mt-10 rounded-lg'>
                 <button onClick={() => navigate('/recruiter/companies')} className='flex items-center gap-3 font-semibold btn sm:btn-sm btn-outline'>
                     <IoArrowBack /> <span>Back</span>
                 </button>
@@ -106,7 +106,7 @@ const CompanySetup = () => {
 
                     <div className='flex items-center justify-between gap-4 max-sm:flex-col'>
                         <label htmlFor="" className='label'>Logo</label>
-                        <input type="file" name="file" className='file-input' accept='image/*' onChange={changeFileHandler} />
+                        <input type="file" name="file" className='file-input' accept='image/*' required onChange={changeFileHandler} />
                     </div>
 
                     <div className='flex items-center justify-between mx-auto'>
